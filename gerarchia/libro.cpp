@@ -1,6 +1,6 @@
 #include "libro.h"
 
-libro::libro()
+Libro::Libro()
 {
 
 }

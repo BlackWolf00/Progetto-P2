@@ -28,11 +28,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+        gerarchia/item.cpp \
         gerarchia/libro.cpp \
         gerarchia/quotidiano.cpp \
         gerarchia/rivista.cpp \
-        gerarchia/item.cpp \
-    template/container.cpp
+        template/container.cpp \
+        template/deepptr.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,4 +41,5 @@ HEADERS += \
         gerarchia/libro.h \
         gerarchia/quotidiano.h \
         gerarchia/rivista.h \
-    template/container.h
+        template/container.h \
+        template/deepptr.h

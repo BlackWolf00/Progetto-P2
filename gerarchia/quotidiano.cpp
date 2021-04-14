@@ -1,6 +1,6 @@
 #include "quotidiano.h"
 
-quotidiano::quotidiano()
+Quotidiano::Quotidiano()
 {
 
 }

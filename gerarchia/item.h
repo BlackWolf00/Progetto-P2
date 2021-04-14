@@ -1,6 +1,8 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include <string>
+
 using std::string;
 
 class Item
@@ -8,7 +10,7 @@ class Item
 private:
     double prezzo;
 public:
-    Item(double p=2) : prezzo(p) {}
+    Item(double p) : prezzo(p) {}
     virtual ~Item();
     virtual string getTitolo() const = 0;
     virtual double getPrezzo() const = 0;
