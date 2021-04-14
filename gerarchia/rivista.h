@@ -13,7 +13,7 @@ private:
     string genere;
     string editore;
 public:
-    Rivista(double p, int u, string t, string g, string e) : Item(p), numeroUscita(u), titolo(t), genere(g), editore(e) {}
+    Rivista(double p, int u, string t, string g, string e);
     //TODO
     string getEditore() const;
 };

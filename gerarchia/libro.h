@@ -14,8 +14,8 @@ private:
     string annoEdizione;
     string casaEditrice;
 public:
-    Libro(double p, string t, string a, string g, string e, string c) : Item(p), titolo(t), autore(a), genere(g), annoEdizione(e), casaEditrice(c) {}
-    //DISTRUTTORE
+    Libro(double p, string t, string a, string g, string e, string c);
+    //DISTRUTTORE FORSE
     string getAutore() const;
     string getAnnoEdizione() const;
     string getCasaEditrice() const;

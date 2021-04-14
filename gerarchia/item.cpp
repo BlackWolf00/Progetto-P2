@@ -1,3 +1,7 @@
 #include "item.h"
 
-Item::Item() {}
+Item::Item(double p) : prezzo(p) {}
+
+double Item::getPrezzo() const {
+    return prezzo;
+}

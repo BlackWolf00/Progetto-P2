@@ -30,16 +30,16 @@ SOURCES += \
         mainwindow.cpp \
         gerarchia/item.cpp \
         gerarchia/libro.cpp \
-        gerarchia/quotidiano.cpp \
         gerarchia/rivista.cpp \
         template/container.cpp \
-        template/deepptr.cpp
+        template/deepptr.cpp \
+    gerarchia/fumetto.cpp
 
 HEADERS += \
         mainwindow.h \
         gerarchia/item.h \
         gerarchia/libro.h \
-        gerarchia/quotidiano.h \
         gerarchia/rivista.h \
         template/container.h \
-        template/deepptr.h
+        template/deepptr.h \
+    gerarchia/fumetto.h

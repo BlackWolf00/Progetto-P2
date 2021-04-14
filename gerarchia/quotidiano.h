@@ -9,7 +9,7 @@ private:
     int numeroUscita;
     string nomeGiornale;
 public:
-    Quotidiano(double p, int u, string g) : Item(p), numeroUscita(u), nomeGiornale(g) {}
+    Quotidiano(double p, int u, string g);
     //TODO
     string getNomeGiornale() const;
 };
