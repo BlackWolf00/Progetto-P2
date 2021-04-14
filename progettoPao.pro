@@ -8,6 +8,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+CONFIG += c++14
+
 TARGET = Test
 TEMPLATE = app
 
@@ -25,7 +27,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        gerarchia/libro.cpp \
+        gerarchia/quotidiano.cpp \
+        gerarchia/rivista.cpp \
+        gerarchia/item.cpp \
+    template/container.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        gerarchia/item.h \
+        gerarchia/libro.h \
+        gerarchia/quotidiano.h \
+        gerarchia/rivista.h \
+    template/container.h
