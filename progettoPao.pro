@@ -33,7 +33,8 @@ SOURCES += \
         gerarchia/rivista.cpp \
         template/container.cpp \
         template/deepptr.cpp \
-    gerarchia/fumetto.cpp
+    gerarchia/fumetto.cpp \
+    util/carrello.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,4 +43,5 @@ HEADERS += \
         gerarchia/rivista.h \
         template/container.h \
         template/deepptr.h \
-    gerarchia/fumetto.h
+    gerarchia/fumetto.h \
+    util/carrello.h

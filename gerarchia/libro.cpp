@@ -1,6 +1,12 @@
 #include "libro.h"
 
-Libro::Libro(double p, string t, string a, string g, string e, string c)
-    : Item(p), titolo(t), autore(a), genere(g), annoEdizione(e), casaEditrice(c) {}
+Libro::Libro(string t, string g, double p, string a, string e, string c)
+    : Item(t, g, p), autore(a), annoEdizione(e), editore(c) {}
 
+string Libro::getAutore() const {
+    return autore;
+}
 
+string Libro::getAnnoEdizione() const {
+    return annoEdizione;
+}

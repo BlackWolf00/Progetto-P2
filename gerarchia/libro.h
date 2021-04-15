@@ -8,17 +8,14 @@ using std::string;
 class Libro : public Item
 {
 private:
-    string titolo;
     string autore;
-    string genere;
     string annoEdizione;
-    string casaEditrice;
+    string editore;
 public:
-    Libro(double p, string t, string a, string g, string e, string c);
-    //DISTRUTTORE FORSE
-    string getAutore() const;
+    Libro(string t, string g, double p, string a,  string e, string c);
     string getAnnoEdizione() const;
-    string getCasaEditrice() const;
+
+    virtual string getAutore() const;
 };
 
 #endif // LIBRO_H

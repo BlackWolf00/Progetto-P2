@@ -9,13 +9,12 @@ class Rivista : public Item
 {
 private:
     int numeroUscita;
-    string titolo;
-    string genere;
     string editore;
 public:
-    Rivista(double p, int u, string t, string g, string e);
-    //TODO
-    string getEditore() const;
+    Rivista(string t, string g, double p, int u, string e);
+
+    virtual int getNumeroUscita() const;
+    virtual string getEditore() const;
 };
 
 #endif // RIVISTA_H
