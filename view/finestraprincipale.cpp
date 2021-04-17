@@ -163,7 +163,7 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     connect(pdf, SIGNAL(triggered()), SIGNAL(apriFinestraSalvaPDF()));
     connect(exit, SIGNAL(triggered()), this, SLOT(close()));
     connect(aggiungiACatalogo, SIGNAL(triggered()), this, SIGNAL(apriFinestraAggiungiACatalogo()));
-    connect(rimuoviDaCatalogo, SIGNAL(triggered()), this, SIGNAL(richiestaRimuoviDaCatalogo()));
+    connect(rimuoviDaCatalogo, SIGNAL(triggered()), this, SLOT(rimuoviSelezionato()));
     connect(modificaElementoCatalogo, SIGNAL(triggered()), this, SIGNAL(richiestaModifica()));
     connect(trova, SIGNAL(textChanged(const QString &)), this, SIGNAL(aggiornaRicerca()));
     connect(bottoneNoleggio, SIGNAL(clicked()), this, SLOT(generaNoleggio()));
@@ -174,4 +174,164 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     connect(noleggio, SIGNAL(currentRowChanged(const int)), this, SLOT(noleggioSelezionato(const int)));
     connect(acquisto, SIGNAL(currentRowChanged(const int)), this, SLOT(acquistoSelezionato(const int)));
 
+}
+
+void FinestraPrincipale::displayCatalogo(const QStringList l) {
+    elemento->reset();
+    elemento->clear();
+    auto it = l.begin();
+    while(ite != l.end()) {
+        elemento->addItem(*it);
+        ++it;
+    }
+}
+
+void FinestraPrincipale::displayNoleggio(const QStringList l) {
+    noleggio->reset();
+    noleggio->clear();
+    auto it = l.begin();
+    while(it != l.end()) {
+        noleggio->addItem(*it);
+        ++it;
+    }
+}
+
+void FinestraPrincipale::displayAcquisto(const QStringList l) {
+    acquisto->reset();
+    acquisto->clear();
+    auto it = l.begin();
+    while(it != l.end()) {
+        acquisto->addItem(*it);
+        ++it;
+    }
+}
+
+void FinestraPrincipale::displayErroreInput() {
+    QMessageBox message;
+    message.critical(this, "Errore", "Input Incompleto");
+    message.setFixedSize(500, 200);
+}
+
+void FinestraPrincipale::displayNessunaSelezione() {
+    QMessageBox message;
+    message.critical(this, "Errore", "Nessun oggetto selezionato");
+    message.setFixedSize(500, 200);
+}
+
+void FinestraPrincipale::displayDettagli(const QString d) {
+    dettagli->clear();
+    dettagli->setText(d);
+}
+
+void FinestraPrincipale::displayTotale(const double n, const double c) {
+    totnoleggio->clear();
+    totnoleggio->setText(QString::number(n)+"€");
+
+    totacquisto->clear();
+    totacquisto->setText(QString::number(c)+"€");
+}
+
+void FinestraPrincipale::displayErroreApertura() {
+    QMessageBox message;
+    message.critical(this, "Errore", "Impossibile aprire il file selezionato");
+    message.setFixedSize(500, 200);
+}
+
+void FinestraPrincipale::displayElementoEsistente() {
+    QMessageBox message;
+    message.critical(this, "Errore", "Elemento già esistente");
+    message.setFixedSize(500, 200);
+}
+
+void FinestraPrincipale::displayCarica(QString e) {
+    QMessageBox message;
+    message.warning(this, "Conferma", e);
+    message.setFixedSize(500, 200);
+}
+
+void FinestraPrincipale::displaySalva(QString e) {
+    QMessageBox message;
+    message.warning(this, "Conferma", e);
+    message.setFixedSize(500, 200);
+}
+
+bool FinestraPrincipale::isSelezionato() const {
+    return elemento->isGiaSelezionato();
+}
+
+unsigned int FinestraPrincipale::getCatalogoSelezionato() const {
+    return elemento->getIndice();
+}
+
+const QString FinestraPrincipale::getParolaChiave() const {
+    return trova->text();
+}
+
+QString FinestraPrincipale::getNomeCliente() const {
+    return nome->text();
+}
+
+QString FinestraPrincipale::getCFCliente() const {
+    return cf->text();
+}
+
+void FinestraPrincipale::aggiornaDettagli(QString info) {
+    dettagli->setText(info);
+}
+
+void FinestraPrincipale::generaNoleggio() {
+    if(elemento->isGiaSelezionato()) {
+        emit clickNoleggio(elemento->getIndice(), (uint)quantita->value());
+        quantita->setValue(0);
+    }
+    else
+        displayNessunaSelezione();
+}
+
+void FinestraPrincipale::generaAcquisto() {
+    if(elemento->isGiaSelezionato()) {
+        emit clickAcquisto(elemento->getIndice(), (uint)quantita->value());
+        quantita->setValue(0);
+    }
+    else
+        displayNessunaSelezione();
+}
+
+void FinestraPrincipale::distruggiNoleggio() {
+    if(noleggio->isGiaSelezionato())
+        emit clickRimuoviNoleggio(noleggio->getIndice());
+    else
+        displayNessunaSelezione();
+}
+
+void FinestraPrincipale::distruggiAcquisto() {
+    if(acquisto->isGiaSelezionato())
+        emit clickRimuoviAcquisto(acquisto->getIndice());
+    else
+        displayNessunaSelezione();
+}
+
+void FinestraPrincipale::catalogoSelezionato(const int i) {
+    noleggio->reset();
+    acquisto->reset();
+    emit richiestaDettagliCatalogo((uint)i);
+}
+
+void FinestraPrincipale::noleggioSelezionato(const int i) {
+    elemento->reset();
+    acquisto->reset();
+    emit richiestaDettagliNoleggio((uint)i);
+}
+
+void FinestraPrincipale::acquistoSelezionato(const int i) {
+    elemento->reset();
+    noleggio->reset();
+    emit richiestaDettagliAcquisto((uint)i);
+}
+
+void FinestraPrincipale::rimuoviSelezionato() {
+    if(elemento->isGiaSelezionato())
+        emit richiestaRimuoviDaCatalogo(elemento->getIndice());
+    else
+        displayNessunaSelezione();
 }

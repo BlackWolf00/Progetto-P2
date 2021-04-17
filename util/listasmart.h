@@ -11,7 +11,7 @@ public:
 
     unsigned int getIndice() const;
 
-    bool isSelezionato() const;
+    bool isGiaSelezionato() const;
 
     void deselezionaIndice() const;
 };

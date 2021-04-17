@@ -6,7 +6,7 @@ unsigned int ListaSmart::getIndice() const {
     return (uint)this->selectedIndexes()[0].row();
 }
 
-bool ListaSmart::isSelezionato() const {
+bool ListaSmart::isGiaSelezionato() const {
     return !this->selectedIndexes().empty();
 }
 

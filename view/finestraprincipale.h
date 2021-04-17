@@ -35,7 +35,7 @@ public:
     void displayDettagli(const QString);
     void displayTotale(const double, const double);
     void displayErroreApertura();
-    void displayErroreCF();
+    //void displayErroreCF();
     void displayElementoEsistente();
     void displayCarica(QString);
     void displaySalva(QString);
@@ -50,7 +50,7 @@ public:
 
 public slots:
 
-    void dettagliAggiornati(QString info);
+    void aggiornaDettagli(QString info);
     void generaNoleggio();
     void generaAcquisto();
     void distruggiNoleggio();
@@ -76,7 +76,7 @@ signals:
     void clickRimuoviNoleggio(const unsigned int i);
     void clickRimuoviAcquisto(const unsigned int i);
     void richiestaDettagliCatalogo(const unsigned int);
-    void richiestaDettagliNolegio(const unsigned int);
+    void richiestaDettagliNoleggio(const unsigned int);
     void richiestaDettagliAcquisto(const unsigned int);
 };
 
