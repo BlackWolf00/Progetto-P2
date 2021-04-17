@@ -34,7 +34,13 @@ SOURCES += \
         template/container.cpp \
         template/deepptr.cpp \
     gerarchia/fumetto.cpp \
-    util/carrello.cpp
+    util/carrello.cpp \
+    model/model.cpp \
+    gerarchia/settimanale.cpp \
+    gerarchia/mensile.cpp \
+    controller/controller.cpp \
+    view/finestraprincipale.cpp \
+    util/listasmart.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -44,4 +50,10 @@ HEADERS += \
         template/container.h \
         template/deepptr.h \
     gerarchia/fumetto.h \
-    util/carrello.h
+    util/carrello.h \
+    model/model.h \
+    gerarchia/settimanale.h \
+    gerarchia/mensile.h \
+    controller/controller.h \
+    view/finestraprincipale.h \
+    util/listasmart.h

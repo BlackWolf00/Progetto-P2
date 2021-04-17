@@ -13,10 +13,19 @@ private:
     const double prezzo;
 public:
     Item(string t, string g, double p);
+    Item(const Item&);
+    virtual Item*clone() const = 0;
 
     string getTitolo() const;
     string getGenere() const;
     double getPrezzo() const;
+
+    virtual bool operator==(const Item&) const;
+    virtual bool operator!=(const Item&) const;
+    virtual bool operator>(const Item&) const;
+    virtual bool operator<(const Item&) const;
+
+    static bool match(string, string);
 
     virtual ~Item() = default;
     virtual string getAutore() const = 0;
