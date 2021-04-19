@@ -53,8 +53,7 @@ signals:
     void attivaSettimanale();
     void attivaMensile();
 
-    void dettagliOggetto(const QStringList);
-
+    void mandaDettagliOggetto(const QStringList);
     void erroreInput();
 };
 

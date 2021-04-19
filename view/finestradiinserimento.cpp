@@ -4,7 +4,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QDialog(parent), titolo(new QLineEdit("--Vuoto--", this)),
     genere(new QLineEdit("--Vuoto--", this)), prezzo(new QLineEdit("0.0", this)),
     autore(new QLineEdit("--Vuoto--", this)), editore(new QLineEdit("--Vuoto--", this)),
-    annoEdizione(new QLineEdit("--Vuoto--", this)), numeroUscita(new QLineEdit("--Vuoto--", this)),
+    annoEdizione(new QLineEdit("--Vuoto--", this)), numeroUscita(new QLineEdit("0", this)),
     libro(new QRadioButton("Libro", this)), fumetto(new QRadioButton("Fumetto", this)),
     mensile(new QRadioButton("Mensile", this)), settimanale(new QRadioButton("Mensile", this)),
     ok(new QPushButton("Conferma")), no(new QPushButton("Annulla")),
@@ -128,4 +128,166 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
 
 }
 
+void FinestraDiInserimento::resetPerNuovoInserimento() {
+    dettagliBase->setVisible(false);
+    boxElementoSelezionato->setVisible(false);
+    dettagliLibro->setVisible(false);
+    dettagliFumetto->setVisible(false);
+    dettagliSettimanale->setVisible(false);
+    dettagliMensile->setVisible(false);
 
+    this->adjustSize();
+
+    titolo->setText("--Vuoto--");
+    genere->setText("--Vuoto--");
+    prezzo->setText("0.0");
+    autore->setText("--Vuoto--");
+    editore->setText("--Vuoto--");
+    annoEdizione->setText("--Vuoto--");
+    numeroUscita->setText("0");
+
+    //libro->setAutoExclusive(false);
+    libro->setChecked(false);
+
+    //fumetto->setAutoExclusive(false);
+    fumetto->setChecked(false);
+
+    //settimanale->setAutoExclusive(false);
+    settimanale->setChecked(false);
+
+    //mensile->setAutoExclusive(false);
+    mensile->setChecked(false);
+
+    dettagliBase->setVisible(true);
+    boxElementoSelezionato->setVisible(true);
+
+    this->adjustSize();
+}
+
+void FinestraDiInserimento::displayErroreInput() {
+    QMessageBox messaggio;
+    messaggio.critical(this, "Errore", "Input Errato");
+    messaggio.setFixedSize(500, 200);
+}
+
+void FinestraDiInserimento::showLibro() {
+    /*fumetto->setChecked(false);
+    settimanale->setChecked(false); Non servono perchè AutoExclusive è gia true
+    mensile->setChecked(false);*/
+
+    dettagliBase->setVisible(false);
+    boxElementoSelezionato->setVisible(false);
+    dettagliFumetto->setVisible(false);
+    dettagliSettimanale->setVisible(false);
+    dettagliMensile->setVisible(false);
+
+    this->adjustSize();
+
+    dettagliBase->setVisible(true);
+    boxElementoSelezionato->setVisible(true);
+    dettagliLibro->setVisible(true);
+
+    this->adjustSize();
+}
+
+void FinestraDiInserimento::showFumetto() {
+    dettagliBase->setVisible(false);
+    boxElementoSelezionato->setVisible(false);
+    dettagliFumetto->setVisible(false);
+    dettagliSettimanale->setVisible(false);
+    dettagliMensile->setVisible(false);
+
+    this->adjustSize();
+
+    dettagliBase->setVisible(true);
+    boxElementoSelezionato->setVisible(true);
+    dettagliFumetto->setVisible(true);
+
+    this->adjustSize();
+}
+
+void FinestraDiInserimento::showSettimanale() {
+    dettagliBase->setVisible(false);
+    boxElementoSelezionato->setVisible(false);
+    dettagliFumetto->setVisible(false);
+    dettagliSettimanale->setVisible(false);
+    dettagliMensile->setVisible(false);
+
+    this->adjustSize();
+
+    dettagliBase->setVisible(true);
+    boxElementoSelezionato->setVisible(true);
+    dettagliSettimanale->setVisible(true);
+
+    this->adjustSize();
+}
+
+void FinestraDiInserimento::showMensile() {
+    dettagliBase->setVisible(false);
+    boxElementoSelezionato->setVisible(false);
+    dettagliFumetto->setVisible(false);
+    dettagliSettimanale->setVisible(false);
+    dettagliMensile->setVisible(false);
+
+    this->adjustSize();
+
+    dettagliBase->setVisible(true);
+    boxElementoSelezionato->setVisible(true);
+    dettagliMensile->setVisible(true);
+
+    this->adjustSize();
+}
+
+void FinestraDiInserimento::conferma() {
+    QRegExp regexNumber("^(?:0|[1-9][0-9]*)\\.[0-9]+$");
+    QStringList *tmp = new QStringList();
+
+    if (libro->isChecked())
+        tmp->push_back("l");
+    else {
+        if (fumetto->isChecked())
+            tmp->push_back("f");
+        else {
+            if (settimanale->isChecked())
+                tmp->push_back("s");
+            else {
+                if (mensile->isChecked())
+                    tmp->push_back("m");
+                else
+                    tmp->push_back("null");
+            }
+        }
+    }
+
+    tmp->push_back(titolo->text());
+    tmp->push_back(genere->text());
+    tmp->push_back(prezzo->text());
+    if (libro->isChecked()) {
+        tmp->push_back(autore->text());
+        tmp->push_back(annoEdizione->text());
+        tmp->push_back(editore->text());
+    }
+    if (fumetto->isChecked()) {
+        tmp->push_back(numeroUscita->text());
+        tmp->push_back(autore->text());
+        tmp->push_back(editore->text());
+    }
+    if (settimanale->isChecked() || mensile->isChecked()) {
+        tmp->push_back(numeroUscita->text());
+        tmp->push_back(editore->text());
+    }
+
+    if (prezzo->text().contains(regexNumber)) {
+        emit mandaDettagliOggetto(*tmp);
+        this->close();
+    }
+    else
+        emit erroreInput();
+
+
+}
+
+void FinestraDiInserimento::annulla() {
+    this->resetPerNuovoInserimento();
+    this->close();
+}
