@@ -40,7 +40,8 @@ SOURCES += \
     gerarchia/mensile.cpp \
     controller/controller.cpp \
     view/finestraprincipale.cpp \
-    util/listasmart.cpp
+    util/listasmart.cpp \
+    view/finestradiinserimento.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -56,4 +57,5 @@ HEADERS += \
     gerarchia/mensile.h \
     controller/controller.h \
     view/finestraprincipale.h \
-    util/listasmart.h
+    util/listasmart.h \
+    view/finestradiinserimento.h
