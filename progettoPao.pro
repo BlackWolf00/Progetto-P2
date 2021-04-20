@@ -42,7 +42,8 @@ SOURCES += \
     view/finestraprincipale.cpp \
     util/listasmart.cpp \
     view/finestradiinserimento.cpp \
-    view/finestradimodifica.cpp
+    view/finestradimodifica.cpp \
+    util/xmlio.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -60,4 +61,5 @@ HEADERS += \
     view/finestraprincipale.h \
     util/listasmart.h \
     view/finestradiinserimento.h \
-    view/finestradimodifica.h
+    view/finestradimodifica.h \
+    util/xmlio.h
