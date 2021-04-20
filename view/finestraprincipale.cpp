@@ -74,7 +74,7 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     //AGGIUNTA LAYOUT
 
     menu->addMenu(file);
-    menu->addMenu(modify);
+    menu->addMenu(modifica);
 
     modifica->addAction(aggiungiACatalogo);
     modifica->addAction(rimuoviDaCatalogo);
@@ -180,7 +180,7 @@ void FinestraPrincipale::displayCatalogo(const QStringList l) {
     elemento->reset();
     elemento->clear();
     auto it = l.begin();
-    while(ite != l.end()) {
+    while(it != l.end()) {
         elemento->addItem(*it);
         ++it;
     }

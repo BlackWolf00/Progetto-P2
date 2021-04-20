@@ -30,3 +30,70 @@ void Carrello::eliminaDaCarrelloAIndice(unsigned int i){
         carrello.erase(it);
     }
 }
+
+QMap<DeepPtr<Item>, unsigned int>::const_iterator Carrello::cercaNelCarrello(DeepPtr<Item> i) const {
+    return carrello.find(i);
+}
+
+DeepPtr<Item> Carrello::cercaAIndice(unsigned int i) const {
+    auto it = carrello.begin();
+    for(unsigned int k = 0; k < i; k++)
+        it++;
+    return it.key();
+}
+
+unsigned int Carrello::rimuoviQuantita(DeepPtr<Item> i, unsigned int q) {
+    auto it = carrello.find(i);
+    if(carrello.end() != it) {
+        if (it.value() > q) {
+            it.value()-=q;
+            return it.value();
+        }
+    }
+    return 0;
+}
+
+unsigned int Carrello::getQuantita(DeepPtr<Item> i) const {
+    auto it = cercaNelCarrello(i);
+    if(*it)
+        return it.value();
+    return 0;
+}
+
+double Carrello::getTotalePrezzoAcquisto() const {
+    double totale = 0;
+    double costo_tmp = 0;
+    for(auto it = carrello.begin(); it != carrello.end(); it++) {
+        costo_tmp = (*(it.key())).getPrezzo();
+        totale += it.value() * costo_tmp;
+    }
+    return totale;
+}
+
+void Carrello::setQuantita(DeepPtr<Item> i, unsigned int q) {
+    auto it = carrello.find(i);
+    it.value() = q;
+}
+
+bool Carrello::is_vuoto() const {
+    return carrello.empty();
+}
+
+void Carrello::pulisci() {
+    carrello.clear();
+}
+
+/*QStringList Carrello::stampaCarrello() const {
+    QStringList stampa;
+    QStringList label;
+
+    auto it = carrello.begin();
+    while(it != carrello.end()) {
+        label = (QString::fromStdString(((it.key())->getAutore()) + " " + ((it.key())->getGenere())));
+        label += QString::fromStdString("    ");
+        label += QString::number(it.value());
+        stampa.push_back(label);
+        ++it;
+    }
+    return stampa;
+}*/
