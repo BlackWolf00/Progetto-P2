@@ -66,3 +66,7 @@ string Item::getGenere() const {
 double Item::getPrezzo() const {
     return prezzo;
 }
+
+string Item::print() const {
+    return "Titolo: " + titolo + " Genere: " + genere + "\n" + "Prezzo: " + std::to_string(prezzo) + "€" + "\n";
+}

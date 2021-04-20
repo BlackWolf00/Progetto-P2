@@ -1,7 +1,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include <string>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>>
+//#include <string>
 
 using std::string;
 
@@ -15,6 +17,7 @@ public:
     Item(string t, string g, double p);
     Item(const Item&);
     virtual Item*clone() const = 0;
+    virtual ~Item() = default;
 
     string getTitolo() const;
     string getGenere() const;
@@ -27,10 +30,13 @@ public:
 
     static bool match(string, string);
 
-    virtual ~Item() = default;
     virtual string getAutore() const = 0;
     virtual int getNumeroUscita() const = 0;
     virtual string getEditore() const = 0;
+
+    virtual QString getType() const = 0;
+    virtual string print() const;
+    virtual void serializzaDati(QXmlStreamWriter&) const = 0;
 };
 
 #endif // ITEM_H
