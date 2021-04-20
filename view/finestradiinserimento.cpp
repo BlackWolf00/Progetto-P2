@@ -177,6 +177,7 @@ void FinestraDiInserimento::showLibro() {
 
     dettagliBase->setVisible(false);
     boxElementoSelezionato->setVisible(false);
+    dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
     dettagliSettimanale->setVisible(false);
     dettagliMensile->setVisible(false);
@@ -193,6 +194,7 @@ void FinestraDiInserimento::showLibro() {
 void FinestraDiInserimento::showFumetto() {
     dettagliBase->setVisible(false);
     boxElementoSelezionato->setVisible(false);
+    dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
     dettagliSettimanale->setVisible(false);
     dettagliMensile->setVisible(false);
@@ -209,6 +211,7 @@ void FinestraDiInserimento::showFumetto() {
 void FinestraDiInserimento::showSettimanale() {
     dettagliBase->setVisible(false);
     boxElementoSelezionato->setVisible(false);
+    dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
     dettagliSettimanale->setVisible(false);
     dettagliMensile->setVisible(false);
@@ -225,6 +228,7 @@ void FinestraDiInserimento::showSettimanale() {
 void FinestraDiInserimento::showMensile() {
     dettagliBase->setVisible(false);
     boxElementoSelezionato->setVisible(false);
+    dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
     dettagliSettimanale->setVisible(false);
     dettagliMensile->setVisible(false);
@@ -283,8 +287,6 @@ void FinestraDiInserimento::conferma() {
     }
     else
         emit erroreInput();
-
-
 }
 
 void FinestraDiInserimento::annulla() {

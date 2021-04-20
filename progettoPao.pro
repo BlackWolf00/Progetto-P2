@@ -41,7 +41,8 @@ SOURCES += \
     controller/controller.cpp \
     view/finestraprincipale.cpp \
     util/listasmart.cpp \
-    view/finestradiinserimento.cpp
+    view/finestradiinserimento.cpp \
+    view/finestradimodifica.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -58,4 +59,5 @@ HEADERS += \
     controller/controller.h \
     view/finestraprincipale.h \
     util/listasmart.h \
-    view/finestradiinserimento.h
+    view/finestradiinserimento.h \
+    view/finestradimodifica.h
