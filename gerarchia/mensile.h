@@ -11,6 +11,16 @@ private:
 
 public:
     Mensile(string t, string g, double p, int u, string e);
+    Mensile(const Mensile&);
+    virtual Mensile* clone() const;
+
+    bool operator==(const Item&) const;
+    bool operator!=(const Item&) const;
+
+    QString getType() const;
+    string print() const;
+    static Mensile *unserialize(QXmlStreamReader&);
+    void serializzaDati(QXmlStreamWriter&) const;
 };
 
 #endif // MENSILE_H

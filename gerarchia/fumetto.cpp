@@ -97,5 +97,5 @@ void Fumetto::serializzaDati(QXmlStreamWriter &wr) const {
     wr.writeEndElement();
 
     if(wr.hasError())
-        throw "Errore in scrittura Libro";
+        throw "Errore in scrittura Fumetto";
 }
