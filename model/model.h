@@ -7,6 +7,7 @@
 
 #include "template/container.h"
 #include "template/deepptr.h"
+#include "util/xmlio.h"
 #include "gerarchia/item.h"
 #include "gerarchia/fumetto.h"
 #include "gerarchia/rivista.h"
@@ -36,9 +37,9 @@ public:
 
     bool modificaOggetto(const unsigned int, const QStringList);
 
-    //QString getDettagliCatalogo(const unsigned int) const;
+    QString getDettagliCatalogo(const unsigned int) const;
     //QString getDettagliNoleggio(const unsigned int) const;
-    //QString getDettagliAcquisto(const unsigned int) const;
+    QString getDettagliAcquisto(const unsigned int) const;
 
     QStringList getElementiCatalogo(const unsigned int) const;
     //QStringList getElementeiNoleggio(const unsigned int) const;
@@ -74,7 +75,7 @@ public slots:
 
     void setFilename(const QString flname);
     QString caricaDati();
-    //QString serializzaDati();
+    QString serializzaDati();
 
 signals:
 

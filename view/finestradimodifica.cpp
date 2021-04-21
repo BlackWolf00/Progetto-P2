@@ -3,7 +3,7 @@
 FinestraDiModifica::FinestraDiModifica(QWidget *parent) : FinestraDiInserimento(parent) {}
 
 void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsigned int i) {
-    i = i;
+    ind = i;
 
     QString punto = "\\.";
     QRegExp trovaPunto(punto);

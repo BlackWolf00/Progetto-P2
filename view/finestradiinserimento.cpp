@@ -38,6 +38,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QVBoxLayout *layoutItemBase = new QVBoxLayout();
     QVBoxLayout *layoutLibro = new QVBoxLayout();
     QVBoxLayout *layoutFumetto = new QVBoxLayout();
+    QVBoxLayout *layoutRivista = new QVBoxLayout();
     QVBoxLayout *layoutMensile = new QVBoxLayout();
     QVBoxLayout *layoutSettimanale = new QVBoxLayout();
     //QVBoxLayout *layoutTipo = new QVBoxLayout();

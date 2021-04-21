@@ -7,7 +7,7 @@ class FinestraDiModifica : public FinestraDiInserimento
 {
     Q_OBJECT
 private:
-    unsigned int i;
+    unsigned int ind;
 public:
     explicit FinestraDiModifica(QWidget *parent = nullptr);
 

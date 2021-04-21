@@ -12,14 +12,16 @@
 
 #include "gerarchia/item.h"
 #include "gerarchia/libro.h"
-#include "gerarchia/fumetto.h".h"
-#include "gerarchia/rivista.h".h"
+#include "gerarchia/fumetto.h"
+#include "gerarchia/rivista.h"
+#include "gerarchia/settimanale.h"
+#include "gerarchia/mensile.h"
 
 class XmlIO
 {
 public:
     static bool leggi(const QString, Container<DeepPtr<Item>>& catalogo);
-    //static bool scrivi(const Container<DeepPtr<Item>>&, const Qstring);
+    static bool scrivi(const Container<DeepPtr<Item>>&, const QString);
 };
 
 #endif // XMLIO_H

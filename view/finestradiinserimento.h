@@ -23,7 +23,7 @@ protected:
 
     QGroupBox *dettagliBase;
     QGroupBox *boxElementoSelezionato;
-    //QGroupBox *boxTipoSelezionato;
+    QGroupBox *boxTipoSelezionato;
     QGroupBox *dettagliLibro;
     QGroupBox *dettagliFumetto;
     //QGroupBox *dettagliRivista;

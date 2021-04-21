@@ -32,7 +32,7 @@ public:
     bool is_vuoto() const;
     void pulisci();
 
-    //QStringList stampaCarrello() const;
+    QStringList stampaCarrello() const;
 };
 
 #endif // CARRELLO_H

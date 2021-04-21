@@ -83,9 +83,9 @@ void Carrello::pulisci() {
     carrello.clear();
 }
 
-/*QStringList Carrello::stampaCarrello() const {
+QStringList Carrello::stampaCarrello() const {
     QStringList stampa;
-    QStringList label;
+    QString label;
 
     auto it = carrello.begin();
     while(it != carrello.end()) {
@@ -96,4 +96,4 @@ void Carrello::pulisci() {
         ++it;
     }
     return stampa;
-}*/
+}

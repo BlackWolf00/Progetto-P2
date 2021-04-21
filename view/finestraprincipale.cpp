@@ -24,16 +24,16 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     QAction *salva = new QAction("Salva file", this);
     QAction *pdf = new QAction("Esporta PDF", this);
     QAction *exit = new QAction("Esci", this);
-    QAction *labelNome = new QAction("Nome: ");
-    QAction *labelCf = new QAction("CF: ");
-    QAction *labelData = new QAction("Data: ");
-    QAction *labelCatalogo = new QAction("Catalogo: ");
-    QAction *labelCerca = new QAction("Cerca: ");
-    QAction *labelNoleggio = new QAction("Noleggio: ");
-    QAction *labelAcquisto = new QAction("Acquisto: ");
-    QAction *labelQuantita = new QAction("Quantita: ");
-    QAction *labelTotNoleggio = new QAction("Totale Noleggio: ");
-    QAction *labelTotAcquisto = new QAction("Totale Acquisto: ");
+    QLabel *labelNome = new QLabel("Nome: ");
+    QLabel *labelCf = new QLabel("CF: ");
+    QLabel *labelData = new QLabel("Data: ");
+    QLabel *labelCatalogo = new QLabel("Catalogo: ");
+    QLabel *labelCerca = new QLabel("Cerca: ");
+    QLabel *labelNoleggio = new QLabel("Noleggio: ");
+    QLabel *labelAcquisto = new QLabel("Acquisto: ");
+    QLabel *labelQuantita = new QLabel("Quantita: ");
+    QLabel *labelTotNoleggio = new QLabel("Totale Noleggio: ");
+    QLabel *labelTotAcquisto = new QLabel("Totale Acquisto: ");
 
     //BOTTONI
 

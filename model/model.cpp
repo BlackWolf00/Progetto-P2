@@ -9,7 +9,7 @@ void Model::aggiungiAcquisto(const unsigned int i, const unsigned int q) {
     emit acquistoAggiunto();
 }
 
-/*bool Model::modificaOggetto(const unsigned int i, const QStringList l) {
+bool Model::modificaOggetto(const unsigned int i, const QStringList l) {
     if(l.at(0) != "null") {
         DeepPtr<Item> elemento;
         if(l.at(0) == "l")
@@ -30,7 +30,7 @@ void Model::aggiungiAcquisto(const unsigned int i, const unsigned int q) {
     }
 
     return false;
-}*/
+}
 
 void Model::rimuoviDaCatalogo(const unsigned int i) {
     catalogo.removeOneAtIndex(i);
@@ -42,9 +42,13 @@ void Model::rimuoviAcquisto(const unsigned int i) {
     emit acquistoRimosso();
 }
 
-/*QString Model::getDettagliCatalogo(const unsigned int i) const {
+QString Model::getDettagliCatalogo(const unsigned int i) const {
     return QString::fromStdString((catalogo.searchAtIndex(i))->print());
-}*/
+}
+
+QString Model::getDettagliAcquisto(const unsigned int i) const {
+    return QString::fromStdString((acquisto.cercaAIndice(i))->print());
+}
 
 QStringList Model::getElementiCatalogo(const unsigned int i) const {
     QStringList stampa;
@@ -195,19 +199,49 @@ QStringList Model::getCatalogoFiltrato(const QString filtro, QMap<unsigned int, 
 }
 
 QStringList Model::getAcquisto() const {
-
+    return acquisto.stampaCarrello();
 }
 
 double Model::getPrezziAcquisto() const {
     return acquisto.getTotalePrezzoAcquisto();
 }
 
-bool Model::controllaNelCatalogo(const QStringList d) const {
-
+bool Model::controllaNelCatalogo(const QStringList l) const {
+    DeepPtr<Item> elemento;
+    if(l.at(0) != "null") {
+        if(l.at(0) == "l")
+            elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                 l.at(4).toStdString(), l.at(5).toStdString(), l.at(6).toStdString());
+        if(l.at(0) == "f")
+            elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                   l.at(4).toInt(), l.at(5).toStdString(), l.at(6).toStdString());
+        if(l.at(0) == "m")
+            elemento = new Mensile(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                   l.at(4).toInt(), l.at(5).toStdString());
+        if(l.at(0) == "s")
+            elemento = new Settimanale(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                       l.at(4).toInt(), l.at(5).toStdString());
+    }
+    return catalogo.searchIntoList(elemento);
 }
 
-unsigned int Model::trovaElementoNelCatalogo(const QStringList d) const {
-
+unsigned int Model::trovaElementoNelCatalogo(const QStringList l) const {
+    DeepPtr<Item> elemento;
+    if(l.at(0) != "null") {
+        if(l.at(0) == "l")
+            elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                 l.at(4).toStdString(), l.at(5).toStdString(), l.at(6).toStdString());
+        if(l.at(0) == "f")
+            elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                   l.at(4).toInt(), l.at(5).toStdString(), l.at(6).toStdString());
+        if(l.at(0) == "m")
+            elemento = new Mensile(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                   l.at(4).toInt(), l.at(5).toStdString());
+        if(l.at(0) == "s")
+            elemento = new Settimanale(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                       l.at(4).toInt(), l.at(5).toStdString());
+    }
+    return catalogo.getIndex(elemento);
 }
 
 bool Model::trovatoQualcosa() const {
@@ -227,8 +261,26 @@ QDate Model::getData() const {
     return data;
 }
 
-void Model::aggiungiNelCatalogo(const QStringList e) {
+void Model::aggiungiNelCatalogo(const QStringList l) {
+    if(l.at(0) != "null") {
 
+        DeepPtr<Item> elemento;
+
+        if(l.at(0) == "l")
+            elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                 l.at(4).toStdString(), l.at(5).toStdString(), l.at(6).toStdString());
+        if(l.at(0) == "f")
+            elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                   l.at(4).toInt(), l.at(5).toStdString(), l.at(6).toStdString());
+        if(l.at(0) == "m")
+            elemento = new Mensile(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                   l.at(4).toInt(), l.at(5).toStdString());
+        if(l.at(0) == "s")
+            elemento = new Settimanale(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(),
+                                       l.at(4).toInt(), l.at(5).toStdString());
+        catalogo.pushInOrder(elemento);
+    }
+    emit elementoAggiunto();
 }
 
 void Model::setFilename(const QString flname) {
@@ -236,5 +288,16 @@ void Model::setFilename(const QString flname) {
 }
 
 QString Model::caricaDati() {
+    if(!XmlIO::leggi(filename, catalogo))
+        return "Errore di caricamento";
+    else
+        return "Caricamento completato";
+}
 
+QString Model::serializzaDati()
+{
+    if(!XmlIO::scrivi(catalogo, filename))
+        return "Errore di salvataggio";
+    else
+        return "Salvataggio completato";
 }
