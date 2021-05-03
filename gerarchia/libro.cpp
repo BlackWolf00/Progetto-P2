@@ -3,6 +3,9 @@
 Libro::Libro(string t, string g, double p, string a, string e, string c)
     : Item(t, g, p), autore(a), annoEdizione(e), editore(c) {}
 
+Libro::Libro(const Libro& l) : Item(l), autore(l.getAutore()), annoEdizione(l.getAnnoEdizione()),
+    editore(l.getEditore()) {}
+
 Libro *Libro::clone() const {
     return new Libro(*this);
 }
@@ -23,6 +26,14 @@ string Libro::getAutore() const {
 
 string Libro::getAnnoEdizione() const {
     return annoEdizione;
+}
+
+string Libro::getEditore() const {
+    return editore;
+}
+
+int Libro::getNumeroUscita() const { //da fixare
+    return 0;
 }
 
 QString Libro::getType() const {

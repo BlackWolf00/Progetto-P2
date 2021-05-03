@@ -3,6 +3,9 @@
 Fumetto::Fumetto(string t, string g, double p, int n, string a, string e)
     : Item(t, g, p), numeroUscita(n), autore(a), editore(e) {}
 
+Fumetto::Fumetto(const Fumetto& f) : Item(f), numeroUscita(f.getNumeroUscita()), autore(f.getAutore()),
+    editore(f.getEditore()) {}
+
 Fumetto *Fumetto::clone() const {
     return new Fumetto(*this);
 }

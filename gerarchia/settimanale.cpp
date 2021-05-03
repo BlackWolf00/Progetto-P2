@@ -3,6 +3,8 @@
 Settimanale::Settimanale(string t, string g, double p, int u, string e)
     : Rivista(t, g, p, u, e) {}
 
+Settimanale::Settimanale(const Settimanale& s) : Rivista(s) {}
+
 Settimanale *Settimanale::clone() const {
     return new Settimanale(*this);
 }

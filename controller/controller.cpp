@@ -5,7 +5,7 @@ Controller::Controller(QWidget *parent) : QWidget(parent), modello(new Model(thi
 
     finestraP->show();
 
-    connect(finestraP, SIGNAL(clickNoleggio(const unsigned int, const unsigned int)), this,
+    connect(finestraP, SIGNAL(clickAcquisto(const unsigned int, const unsigned int)), this,
             SLOT(aggiungiAdAcquisto(const unsigned int, const unsigned int)));
     connect(finestraP, SIGNAL(richiestaRimuoviDaCatalogo(const unsigned int)), this,
             SLOT(removeCatalogo(const unsigned int)));

@@ -11,16 +11,16 @@ private:
     string editore;
 public:
     Libro(string t, string g, double p, string a,  string e, string c);
-    Libro(const Libro&);    //manca implementazione
+    Libro(const Libro&);
     Libro* clone() const;
     string getAnnoEdizione() const;
 
     bool operator ==(const Item&) const;
     bool operator !=(const Item&) const;
 
-    virtual string getAutore() const;
-    virtual int getNumeroUscita() const;
-    virtual string getEditore() const;
+    virtual string getAutore() const override;
+    virtual int getNumeroUscita() const override;
+    virtual string getEditore() const override;
 
     string print() const;
 

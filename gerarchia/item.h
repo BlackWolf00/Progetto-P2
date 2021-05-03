@@ -2,7 +2,7 @@
 #define ITEM_H
 
 #include <QXmlStreamReader>
-#include <QXmlStreamWriter>>
+#include <QXmlStreamWriter>
 //#include <string>
 
 using std::string;

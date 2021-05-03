@@ -3,6 +3,8 @@
 Rivista::Rivista(string t, string g, double p, int u, string e)
     : Item(t, g, p), numeroUscita(u), editore(e) {}
 
+Rivista::Rivista(const Rivista& r) : Item(r), numeroUscita(r.getNumeroUscita()), editore(r.getEditore()) {}
+
 bool Rivista::operator==(const Item& i) const {
     return dynamic_cast<const Rivista*>(&i) && Item::operator==(i) && numeroUscita==(static_cast<const Rivista*>(&i))->getNumeroUscita() &&
             editore==(static_cast<const Rivista*>(&i))->getEditore();
@@ -19,6 +21,10 @@ int Rivista::getNumeroUscita() const {
 
 string Rivista::getEditore() const {
     return editore;
+}
+
+string Rivista::getAutore() const { //eliminare
+    return 0;
 }
 
 string Rivista::print() const {

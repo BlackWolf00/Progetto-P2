@@ -38,11 +38,11 @@ SOURCES += \
     model/model.cpp \
     gerarchia/settimanale.cpp \
     gerarchia/mensile.cpp \
-    controller/controller.cpp \
     view/finestraprincipale.cpp \
-    util/listasmart.cpp \
     view/finestradiinserimento.cpp \
     view/finestradimodifica.cpp \
+    controller/controller.cpp \
+    util/listasmart.cpp \
     util/xmlio.cpp
 
 HEADERS += \
@@ -57,9 +57,9 @@ HEADERS += \
     model/model.h \
     gerarchia/settimanale.h \
     gerarchia/mensile.h \
-    controller/controller.h \
     view/finestraprincipale.h \
-    util/listasmart.h \
     view/finestradiinserimento.h \
     view/finestradimodifica.h \
+    controller/controller.h \
+    util/listasmart.h \
     util/xmlio.h

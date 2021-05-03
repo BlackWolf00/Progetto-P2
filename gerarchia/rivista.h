@@ -12,6 +12,7 @@ private:
     string editore;
 public:
     Rivista(string t, string g, double p, int u, string e);
+    Rivista(const Rivista&);
     Rivista* clone() const = 0;
 
     bool operator==(const Item&) const;
