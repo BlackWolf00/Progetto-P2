@@ -1,11 +1,13 @@
-#include "mainwindow.h"
+#include <iostream>
 #include <QApplication>
+#include "controller/controller.h"
+
+using namespace std;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    Controller c;
 
     return a.exec();
 }
