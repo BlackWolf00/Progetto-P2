@@ -3,8 +3,11 @@
 FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QDialog(parent), titolo(new QLineEdit("--Vuoto--", this)),
     genere(new QLineEdit("--Vuoto--", this)), prezzo(new QLineEdit("0.0", this)),
-    autore(new QLineEdit("--Vuoto--", this)), editore(new QLineEdit("--Vuoto--", this)),
-    annoEdizione(new QLineEdit("--Vuoto--", this)), numeroUscita(new QLineEdit("0", this)),
+    autoreL(new QLineEdit("--Vuoto--", this)), autoreF(new QLineEdit("--Vuoto--", this)),
+    editoreL(new QLineEdit("--Vuoto--", this)), editoreF(new QLineEdit("--Vuoto--", this)),
+    editoreR(new QLineEdit("--Vuoto--", this)),
+    annoEdizione(new QLineEdit("--Vuoto--", this)),
+    numeroUscitaF(new QLineEdit("0", this)), numeroUscitaR(new QLineEdit("0", this)),
     libro(new QRadioButton("Libro", this)), fumetto(new QRadioButton("Fumetto", this)),
     mensile(new QRadioButton("Mensile", this)), settimanale(new QRadioButton("Mensile", this)),
     ok(new QPushButton("Conferma")), no(new QPushButton("Annulla")),
@@ -19,21 +22,58 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QVBoxLayout *layoutInserimentoPrincipale = new QVBoxLayout();
     QGridLayout *griglia = new QGridLayout();
 
+    //LABEL BASE
+
     QLabel *labelTitolo = new QLabel("Titolo: ");
     QLabel *labelGenere = new QLabel("Genere: ");
     QLabel *labelPrezzo = new QLabel("Prezzo(€): ");
-    QLabel *labelAutore = new QLabel("Autore: ");
+    /*QLabel *labelAutore = new QLabel("Autore: ");
     QLabel *labelEditore = new QLabel("Editore: ");
     QLabel *labelAnnoEdizione = new QLabel("Anno Edizione: ");
-    QLabel *labelNumeroUscita = new QLabel("Numero Uscita: ");
+    QLabel *labelNumeroUscita = new QLabel("Numero Uscita: ");*/
+
+    //LABEL LIBRO
+
+    QLabel *labelAutoreL = new QLabel("Autore: ");
+    QLabel *labelEditoreL = new QLabel("Editore: ");
+    QLabel *labelAnnoEdizione = new QLabel("Anno Edizione: ");
+
+    //LABEL FUMETTO
+
+    QLabel *labelNumeroUscitaF = new QLabel("Numero Uscita: ");
+    QLabel *labelAutoreF = new QLabel("Autore: ");
+    QLabel *labelEditoreF = new QLabel("Editore: ");
+
+    //LABEL RIVISTA
+
+    QLabel *labelNumeroUscitaR = new QLabel("Numero Uscita: ");
+    QLabel *labelEditoreR = new QLabel("Editore: ");
+
+    //LAYOUT BASE
 
     QHBoxLayout *layoutTitolo = new QHBoxLayout();
     QHBoxLayout *layoutGenere = new QHBoxLayout();
     QHBoxLayout *layoutPrezzo = new QHBoxLayout();
-    QHBoxLayout *layoutAutore = new QHBoxLayout();
-    QHBoxLayout *layoutEditore = new QHBoxLayout();
+
+    //LAYOUT LIBRO
+
+    QHBoxLayout *layoutAutoreL = new QHBoxLayout();
+    QHBoxLayout *layoutEditoreL = new QHBoxLayout();
     QHBoxLayout *layoutAnnoEdizione = new QHBoxLayout();
+
+    //LAYOUT FUMETTO
+
+    QHBoxLayout *layoutNumeroUscitaF = new QHBoxLayout();
+    QHBoxLayout *layoutAutoreF = new QHBoxLayout();
+    QHBoxLayout *layoutEditoreF = new QHBoxLayout();
+
+    //LAYOUT RIVISTA
+
+    QHBoxLayout *layoutNumeroUscitaR = new QHBoxLayout();
+    QHBoxLayout *layoutEditoreR = new QHBoxLayout();
+
     QHBoxLayout *layoutNumeroUscita = new QHBoxLayout();
+    QHBoxLayout *layoutEditore = new QHBoxLayout();
 
     QVBoxLayout *layoutItemBase = new QVBoxLayout();
     QVBoxLayout *layoutLibro = new QVBoxLayout();
@@ -53,35 +93,52 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     layoutPrezzo->addWidget(labelPrezzo);
     layoutPrezzo->addWidget(prezzo);
 
-    layoutAutore->addWidget(labelAutore);
-    layoutAutore->addWidget(autore);
+    layoutAutoreL->addWidget(labelAutoreL);
+    layoutAutoreL->addWidget(autoreL);
 
-    layoutEditore->addWidget(labelEditore);
-    layoutEditore->addWidget(editore);
+    layoutAutoreF->addWidget(labelAutoreF);
+    layoutAutoreF->addWidget(autoreF);
+
+    layoutEditoreL->addWidget(labelEditoreL);
+    layoutEditoreL->addWidget(editoreL);
+
+    layoutEditoreF->addWidget(labelEditoreF);
+    layoutEditoreF->addWidget(editoreF);
+
+    layoutEditoreR->addWidget(labelEditoreR);
+    layoutEditoreR->addWidget(editoreR);
 
     layoutAnnoEdizione->addWidget(labelAnnoEdizione);
     layoutAnnoEdizione->addWidget(annoEdizione);
 
-    layoutNumeroUscita->addWidget(labelNumeroUscita);
-    layoutNumeroUscita->addWidget(numeroUscita);
+    layoutNumeroUscitaF->addWidget(labelNumeroUscitaF);
+    layoutNumeroUscitaF->addWidget(numeroUscitaF);
+
+    layoutNumeroUscitaR->addWidget(labelNumeroUscitaR);
+    layoutNumeroUscitaR->addWidget(numeroUscitaR);
+
+    //ATTACCO label piccoli a layouit selezione //DA RIMUOVERE
 
     layoutItemBase->addLayout(layoutTitolo);
     layoutItemBase->addLayout(layoutGenere);
     layoutItemBase->addLayout(layoutPrezzo);
 
-    layoutLibro->addLayout(layoutAutore);
+    layoutLibro->addLayout(layoutAutoreL);
     layoutLibro->addLayout(layoutAnnoEdizione);
-    layoutLibro->addLayout(layoutEditore);
+    layoutLibro->addLayout(layoutEditoreL);
 
-    layoutFumetto->addLayout(layoutAutore);
-    layoutFumetto->addLayout(layoutNumeroUscita);
-    layoutFumetto->addLayout(layoutEditore);
+    layoutFumetto->addLayout(layoutAutoreF);
+    layoutFumetto->addLayout(layoutNumeroUscitaF);
+    layoutFumetto->addLayout(layoutEditoreF);
 
-    layoutRivista->addLayout(layoutNumeroUscita);
-    layoutRivista->addLayout(layoutEditore);
+    //layoutRivista->addLayout(layoutNumeroUscita); Da rivedere con la sistemazione
+    //layoutRivista->addLayout(layoutEditore);
 
-    //layoutMensile->addLayout(layoutNumeroUscita);
-    //layoutMensile->addLayout(layoutEditore);
+    layoutMensile->addLayout(layoutNumeroUscita);
+    layoutMensile->addLayout(layoutEditore);
+
+    layoutSettimanale->addLayout(layoutNumeroUscitaR);
+    layoutSettimanale->addLayout(layoutEditoreR);
 
     layoutElemento->addWidget(libro);
     layoutElemento->addWidget(fumetto);
@@ -142,10 +199,14 @@ void FinestraDiInserimento::resetPerNuovoInserimento() {
     titolo->setText("--Vuoto--");
     genere->setText("--Vuoto--");
     prezzo->setText("0.0");
-    autore->setText("--Vuoto--");
-    editore->setText("--Vuoto--");
+    autoreL->setText("--Vuoto--");
+    autoreF->setText("--Vuoto--");
+    editoreL->setText("--Vuoto--");
+    editoreF->setText("--Vuoto--");
+    editoreR->setText("--Vuoto--");
     annoEdizione->setText("--Vuoto--");
-    numeroUscita->setText("0");
+    numeroUscitaF->setText("0");
+    numeroUscitaR->setText("0");
 
     //libro->setAutoExclusive(false);
     libro->setChecked(false);
@@ -238,7 +299,7 @@ void FinestraDiInserimento::showMensile() {
 
     dettagliBase->setVisible(true);
     boxElementoSelezionato->setVisible(true);
-    dettagliMensile->setVisible(true);
+    dettagliSettimanale->setVisible(true);      //SISTEMARE
 
     this->adjustSize();
 }
@@ -268,18 +329,18 @@ void FinestraDiInserimento::conferma() {
     tmp->push_back(genere->text());
     tmp->push_back(prezzo->text());
     if (libro->isChecked()) {
-        tmp->push_back(autore->text());
+        tmp->push_back(autoreL->text());
         tmp->push_back(annoEdizione->text());
-        tmp->push_back(editore->text());
+        tmp->push_back(editoreL->text());
     }
     if (fumetto->isChecked()) {
-        tmp->push_back(numeroUscita->text());
-        tmp->push_back(autore->text());
-        tmp->push_back(editore->text());
+        tmp->push_back(numeroUscitaF->text());
+        tmp->push_back(autoreF->text());
+        tmp->push_back(editoreF->text());
     }
     if (settimanale->isChecked() || mensile->isChecked()) {
-        tmp->push_back(numeroUscita->text());
-        tmp->push_back(editore->text());
+        tmp->push_back(numeroUscitaR->text());
+        tmp->push_back(editoreR->text());
     }
 
     if (prezzo->text().contains(regexNumber)) {

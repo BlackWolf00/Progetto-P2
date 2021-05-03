@@ -23,9 +23,9 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
             prezzo->setText(l.at(3));
         else
             prezzo->setText(l.at(3)+".0");
-        autore->setText(l.at(4));
+        autoreL->setText(l.at(4));
         annoEdizione->setText(l.at(5));
-        editore->setText(l.at(6));
+        editoreL->setText(l.at(6));
     }
     else {
         if (l.at(0) == "f") {
@@ -43,9 +43,9 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                 prezzo->setText(l.at(3));
             else
                 prezzo->setText(l.at(3)+".0");
-            numeroUscita->setText(l.at(4));
-            autore->setText(l.at(5));
-            editore->setText(l.at(6));
+            numeroUscitaF->setText(l.at(4));
+            autoreF->setText(l.at(5));
+            editoreF->setText(l.at(6));
         }
         else {
             if (l.at(0) == "s") {
@@ -63,8 +63,8 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                     prezzo->setText(l.at(3));
                 else
                     prezzo->setText(l.at(3)+".0");
-                numeroUscita->setText(l.at(4));
-                editore->setText(l.at(5));
+                numeroUscitaR->setText(l.at(4));
+                editoreR->setText(l.at(5));
             }
             else {
                 if (l.at(0) == "m") {
@@ -82,8 +82,8 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                         prezzo->setText(l.at(3));
                     else
                         prezzo->setText(l.at(3)+".0");
-                    numeroUscita->setText(l.at(4));
-                    editore->setText(l.at(5));
+                    numeroUscitaR->setText(l.at(4));
+                    editoreR->setText(l.at(5));
                 }
                 else {
                     dettagliLibro->setVisible(false);
@@ -123,18 +123,18 @@ void FinestraDiModifica::conferma() {
     tmp->push_back(genere->text());
     tmp->push_back(prezzo->text());
     if (libro->isChecked()) {
-        tmp->push_back(autore->text());
+        tmp->push_back(autoreL->text());
         tmp->push_back(annoEdizione->text());
-        tmp->push_back(editore->text());
+        tmp->push_back(editoreL->text());
     }
     if (fumetto->isChecked()) {
-        tmp->push_back(numeroUscita->text());
-        tmp->push_back(autore->text());
-        tmp->push_back(editore->text());
+        tmp->push_back(numeroUscitaF->text());
+        tmp->push_back(autoreF->text());
+        tmp->push_back(editoreF->text());
     }
     if (settimanale->isChecked() || mensile->isChecked()) {
-        tmp->push_back(numeroUscita->text());
-        tmp->push_back(editore->text());
+        tmp->push_back(numeroUscitaR->text());
+        tmp->push_back(editoreR->text());
     }
 
     if (prezzo->text().contains(regexNumber)) {
