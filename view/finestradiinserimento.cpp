@@ -3,6 +3,7 @@
 FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QDialog(parent), titolo(new QLineEdit("--Vuoto--", this)),
     genere(new QLineEdit("--Vuoto--", this)), prezzo(new QLineEdit("0.0", this)),
+    prezzoNoleggio(new QLineEdit("0.0", this)),
     autoreL(new QLineEdit("--Vuoto--", this)), autoreF(new QLineEdit("--Vuoto--", this)),
     editoreL(new QLineEdit("--Vuoto--", this)), editoreF(new QLineEdit("--Vuoto--", this)),
     editoreR(new QLineEdit("--Vuoto--", this)),
@@ -27,10 +28,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QLabel *labelTitolo = new QLabel("Titolo: ");
     QLabel *labelGenere = new QLabel("Genere: ");
     QLabel *labelPrezzo = new QLabel("Prezzo(€): ");
-    /*QLabel *labelAutore = new QLabel("Autore: ");
-    QLabel *labelEditore = new QLabel("Editore: ");
-    QLabel *labelAnnoEdizione = new QLabel("Anno Edizione: ");
-    QLabel *labelNumeroUscita = new QLabel("Numero Uscita: ");*/
+    QLabel *labelPrezzoNoleggio = new QLabel("Costo Giornaliero(€): ");
 
     //LABEL LIBRO
 
@@ -54,6 +52,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QHBoxLayout *layoutTitolo = new QHBoxLayout();
     QHBoxLayout *layoutGenere = new QHBoxLayout();
     QHBoxLayout *layoutPrezzo = new QHBoxLayout();
+    QHBoxLayout *layoutPrezzoNoleggio = new QHBoxLayout();
 
     //LAYOUT LIBRO
 
@@ -78,7 +77,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QVBoxLayout *layoutItemBase = new QVBoxLayout();
     QVBoxLayout *layoutLibro = new QVBoxLayout();
     QVBoxLayout *layoutFumetto = new QVBoxLayout();
-    QVBoxLayout *layoutRivista = new QVBoxLayout();
+    //QVBoxLayout *layoutRivista = new QVBoxLayout();
     QVBoxLayout *layoutMensile = new QVBoxLayout();
     QVBoxLayout *layoutSettimanale = new QVBoxLayout();
     //QVBoxLayout *layoutTipo = new QVBoxLayout();
@@ -92,6 +91,9 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
 
     layoutPrezzo->addWidget(labelPrezzo);
     layoutPrezzo->addWidget(prezzo);
+
+    layoutPrezzoNoleggio->addWidget(labelPrezzoNoleggio);
+    layoutPrezzoNoleggio->addWidget(prezzoNoleggio);
 
     layoutAutoreL->addWidget(labelAutoreL);
     layoutAutoreL->addWidget(autoreL);
@@ -122,6 +124,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     layoutItemBase->addLayout(layoutTitolo);
     layoutItemBase->addLayout(layoutGenere);
     layoutItemBase->addLayout(layoutPrezzo);
+    layoutItemBase->addLayout(layoutPrezzoNoleggio);
 
     layoutLibro->addLayout(layoutAutoreL);
     layoutLibro->addLayout(layoutAnnoEdizione);
@@ -199,6 +202,7 @@ void FinestraDiInserimento::resetPerNuovoInserimento() {
     titolo->setText("--Vuoto--");
     genere->setText("--Vuoto--");
     prezzo->setText("0.0");
+    prezzoNoleggio->setText("0.0");
     autoreL->setText("--Vuoto--");
     autoreF->setText("--Vuoto--");
     editoreL->setText("--Vuoto--");
@@ -328,6 +332,7 @@ void FinestraDiInserimento::conferma() {
     tmp->push_back(titolo->text());
     tmp->push_back(genere->text());
     tmp->push_back(prezzo->text());
+    tmp->push_back(prezzoNoleggio->text());
     if (libro->isChecked()) {
         tmp->push_back(autoreL->text());
         tmp->push_back(annoEdizione->text());

@@ -72,5 +72,6 @@ double Item::getPrezzoNoleggio() const {
 }
 
 string Item::print() const {
-    return "Titolo: " + titolo + " Genere: " + genere + "\n" + "Prezzo: " + std::to_string(prezzo) + "€" + "\n";
+    return "Titolo: " + titolo + "\n" + "Genere: " + genere + "\n" + "Prezzo: " + std::to_string(prezzo) + "€" + "\n" +
+            "Costo Giornaliero: " + std::to_string(prezzoNoleggio) + "€" + "\n";
 }

@@ -16,8 +16,8 @@ class FinestraDiInserimento : public QDialog
 {
     Q_OBJECT
 protected:
-    QLineEdit *titolo, *genere, *prezzo, *autoreL, *autoreF, *editoreL, *editoreF, *editoreR,
-    *annoEdizione, *numeroUscitaF, *numeroUscitaR;
+    QLineEdit *titolo, *genere, *prezzo, *prezzoNoleggio, *autoreL, *autoreF,
+    *numeroUscitaF, *numeroUscitaR, *editoreL, *editoreF, *editoreR, *annoEdizione;
     QRadioButton *libro, *fumetto, *mensile, *settimanale;
 
     QPushButton *ok, *no;

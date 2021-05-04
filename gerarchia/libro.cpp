@@ -41,7 +41,7 @@ QString Libro::getType() const {
 }
 
 string Libro::print() const {
-    return Item::print() + "\n" + "Autore: " + autore + " Anno Edizione: " + annoEdizione + "\n" + "Editore: " + editore + "\n";
+    return Item::print() + "\n" + "Tipologia: Libro" + "\n" + "Autore: " + autore + "\n" + "Anno Edizione: " + annoEdizione + "\n" + "Editore: " + editore + "\n";
 }
 
 Libro *Libro::unserialize(QXmlStreamReader &rd) {

@@ -1,9 +1,9 @@
 #include "fumetto.h"
 
-Fumetto::Fumetto(string t, string g, double p, double pn, int n, string a, string e)
-    : Item(t, g, p, pn), numeroUscita(n), autore(a), editore(e) {}
+Fumetto::Fumetto(string t, string g, double p, double pn, string a, int n, string e)
+    : Item(t, g, p, pn), autore(a), numeroUscita(n), editore(e) {}
 
-Fumetto::Fumetto(const Fumetto& f) : Item(f), numeroUscita(f.getNumeroUscita()), autore(f.getAutore()),
+Fumetto::Fumetto(const Fumetto& f) : Item(f), autore(f.getAutore()), numeroUscita(f.getNumeroUscita()),
     editore(f.getEditore()) {}
 
 Fumetto *Fumetto::clone() const {
@@ -37,7 +37,7 @@ QString Fumetto::getType() const {
 }
 
 string Fumetto::print() const {
-    return Item::print() + "\n" + "Autore: " + autore + " Numero Uscita: " + std::to_string(numeroUscita) + "\n" + "Editore: " + editore + "\n";
+    return Item::print() + "\n" + "Tipologia: Fumetto" + "\n" + "Autore: " + autore + "\n" + "Numero Uscita: " + std::to_string(numeroUscita) + "\n" + "Editore: " + editore + "\n";
 }
 
 Fumetto *Fumetto::unserialize(QXmlStreamReader &rd) {
@@ -68,8 +68,8 @@ Fumetto *Fumetto::unserialize(QXmlStreamReader &rd) {
         e = rd.readElementText();
 
     rd.skipCurrentElement();
-    return new Fumetto(t.toStdString(), g.toStdString(), p, pn, n,
-                     a.toStdString(), e.toStdString());
+    return new Fumetto(t.toStdString(), g.toStdString(), p, pn, a.toStdString(),
+                       n, e.toStdString());
 }
 
 void Fumetto::serializzaDati(QXmlStreamWriter &wr) const {
@@ -92,12 +92,12 @@ void Fumetto::serializzaDati(QXmlStreamWriter &wr) const {
     wr.writeCharacters(QString::number(getPrezzoNoleggio()));
     wr.writeEndElement();
 
-    wr.writeStartElement("numeroUscita");
-    wr.writeCharacters(QString::number(getNumeroUscita()));
-    wr.writeEndElement();
-
     wr.writeStartElement("autore");
     wr.writeCharacters(QString::fromStdString(getAutore()));
+    wr.writeEndElement();
+
+    wr.writeStartElement("numeroUscita");
+    wr.writeCharacters(QString::number(getNumeroUscita()));
     wr.writeEndElement();
 
     wr.writeStartElement("editore");

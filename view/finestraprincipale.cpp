@@ -50,7 +50,7 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     QHBoxLayout *boxParziali = new QHBoxLayout();
     QHBoxLayout *boxFinale = new QHBoxLayout();
 
-    QVBoxLayout *quantitaBottoni = new QVBoxLayout();
+    QVBoxLayout *quantitaBottoni = new QVBoxLayout(); //CAMBIARE NOME
     QHBoxLayout *scriviQuantita = new QHBoxLayout();
     QHBoxLayout *dueBottoni = new QHBoxLayout();
 
@@ -73,17 +73,16 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
 
     //AGGIUNTA LAYOUT
 
-    menu->addMenu(file);
-    menu->addMenu(modifica);
-
-    modifica->addAction(aggiungiACatalogo);
-    modifica->addAction(rimuoviDaCatalogo);
-    modifica->addAction(modificaElementoCatalogo);
-
     file->addAction(carica);
     file->addAction(salva);
     file->addAction(pdf);
     file->addAction(exit);
+    menu->addMenu(file);
+
+    modifica->addAction(aggiungiACatalogo);
+    modifica->addAction(rimuoviDaCatalogo);
+    modifica->addAction(modificaElementoCatalogo);
+    menu->addMenu(modifica);
 
     boxContinua->addLayout(boxParziali);
     boxContinua->addLayout(boxFinale);
@@ -91,14 +90,14 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     boxParziali->addLayout(boxLabelParziali);
     boxParziali->addLayout(boxValoriParziali);
 
+    noleggio->deselezionaIndice();
+    acquisto->deselezionaIndice();
+
     boxLabelParziali->addWidget(labelTotNoleggio);
     boxLabelParziali->addWidget(labelTotAcquisto);
 
     boxValoriParziali->addWidget(totnoleggio);
     boxValoriParziali->addWidget(totacquisto);
-
-    noleggio->deselezionaIndice();
-    acquisto->deselezionaIndice();
 
     quantitaBottoni->addLayout(scriviQuantita);
     quantitaBottoni->addLayout(dueBottoni);
@@ -128,15 +127,16 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     continuaElemento->addWidget(labelCatalogo);
     continuaElemento->addWidget(elemento);
 
-    destra->addLayout(continuaDettagli);
-    destra->addLayout(dueListe);
-    destra->addLayout(boxContinua);
-    principale->addLayout(destra);
-
     sinistra->addLayout(continuaElemento);
     sinistra->addLayout(quantitaBottoni);
     sinistra->addLayout(sezioneCerca);
+
+    destra->addLayout(continuaDettagli);
+    destra->addLayout(dueListe);
+    destra->addLayout(boxContinua);
+
     principale->addLayout(sinistra);
+    principale->addLayout(destra);
 
     dettagliCliente->addWidget(labelNome);
     dettagliCliente->addWidget(nome);
@@ -147,9 +147,8 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     layoutFinale->addLayout(dettagliCliente);
 
     layoutFinale->addLayout(principale);
-    layoutPrincipale->addLayout(layoutFinale);
-
     layoutPrincipale->addWidget(menu);
+    layoutPrincipale->addLayout(layoutFinale);
     widgetPrincipale->setLayout(layoutPrincipale);
     setCentralWidget(widgetPrincipale);
 
@@ -162,14 +161,18 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     connect(salva, SIGNAL(triggered()), SIGNAL(apriFinestraSalvataggio()));
     connect(pdf, SIGNAL(triggered()), SIGNAL(apriFinestraSalvaPDF()));
     connect(exit, SIGNAL(triggered()), this, SLOT(close()));
+
     connect(aggiungiACatalogo, SIGNAL(triggered()), this, SIGNAL(apriFinestraAggiungiACatalogo()));
     connect(rimuoviDaCatalogo, SIGNAL(triggered()), this, SLOT(rimuoviSelezionato()));
     connect(modificaElementoCatalogo, SIGNAL(triggered()), this, SIGNAL(richiestaModifica()));
+
     connect(trova, SIGNAL(textChanged(const QString &)), this, SIGNAL(aggiornaRicerca()));
+
     connect(bottoneNoleggio, SIGNAL(clicked()), this, SLOT(generaNoleggio()));
     connect(bottoneAcquisto, SIGNAL(clicked()), this, SLOT(generaAcquisto()));
     connect(bottoneRimuoviNoleggio, SIGNAL(clicked()), this, SLOT(distruggiNoleggio()));
     connect(bottoneRimuoviAcquisto, SIGNAL(clicked()), this, SLOT(distruggiAcquisto()));
+
     connect(elemento, SIGNAL(currentRowChanged(const int)), this, SLOT(catalogoSelezionato(const int)));
     connect(noleggio, SIGNAL(currentRowChanged(const int)), this, SLOT(noleggioSelezionato(const int)));
     connect(acquisto, SIGNAL(currentRowChanged(const int)), this, SLOT(acquistoSelezionato(const int)));

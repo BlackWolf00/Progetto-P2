@@ -20,16 +20,16 @@ bool Model::modificaOggetto(const unsigned int i, const QStringList l) {
         DeepPtr<Item> elemento;
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(4).toStdString(), l.at(5).toStdString(), l.at(6).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString(), l.at(6).toStdString());
+                                   l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "m")
             elemento = new Mensile(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString());
+                                   l.at(5).toInt(), l.at(6).toStdString());
         if(l.at(0) == "s")
             elemento = new Settimanale(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                       l.at(4).toInt(), l.at(5).toStdString());
+                                       l.at(5).toInt(), l.at(6).toStdString());
 
         catalogo.replaceAtIndex(elemento, i);
         return true;
@@ -86,8 +86,8 @@ QStringList Model::getElementiCatalogo(const unsigned int i) const {
             stampa.push_back(QString::fromStdString(dynamic_cast<const Fumetto*>(&(*(catalogo.searchAtIndex(i))))->getGenere()));
             stampa.push_back(QString::number(item->getPrezzo()));
             stampa.push_back(QString::number(item->getPrezzoNoleggio()));
-            stampa.push_back(QString::number(item->getNumeroUscita()));
             stampa.push_back(QString::fromStdString(dynamic_cast<const Fumetto*>(&(*(catalogo.searchAtIndex(i))))->getAutore()));
+            stampa.push_back(QString::number(item->getNumeroUscita()));
             stampa.push_back(QString::fromStdString(dynamic_cast<const Fumetto*>(&(*(catalogo.searchAtIndex(i))))->getEditore()));
         }
         else {
@@ -141,8 +141,8 @@ QStringList Model::getElementiAcquisto(const unsigned int i) const {
             stampa.push_back(QString::fromStdString(item->getGenere()));
             stampa.push_back(QString::number(item->getPrezzo()));
             stampa.push_back(QString::number(item->getPrezzoNoleggio()));
-            stampa.push_back(QString::number(item->getNumeroUscita()));
             stampa.push_back(QString::fromStdString(item->getAutore()));
+            stampa.push_back(QString::number(item->getNumeroUscita()));
             stampa.push_back(QString::fromStdString(item->getEditore()));
         }
         else {
@@ -197,8 +197,8 @@ QStringList Model::getElementeiNoleggio(const unsigned int i) const {
             stampa.push_back(QString::fromStdString(item->getGenere()));
             stampa.push_back(QString::number(item->getPrezzo()));
             stampa.push_back(QString::number(item->getPrezzoNoleggio()));
-            stampa.push_back(QString::number(item->getNumeroUscita()));
             stampa.push_back(QString::fromStdString(item->getAutore()));
+            stampa.push_back(QString::number(item->getNumeroUscita()));
             stampa.push_back(QString::fromStdString(item->getEditore()));
         }
         else {
@@ -307,16 +307,16 @@ bool Model::controllaNelCatalogo(const QStringList l) const {
     if(l.at(0) != "null") {
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(4).toStdString(), l.at(5).toStdString(), l.at(6).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString(), l.at(6).toStdString());
+                                   l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "m")
             elemento = new Mensile(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString());
+                                   l.at(5).toInt(), l.at(6).toStdString());
         if(l.at(0) == "s")
             elemento = new Settimanale(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                       l.at(4).toInt(), l.at(5).toStdString());
+                                       l.at(5).toInt(), l.at(6).toStdString());
     }
     return catalogo.searchIntoList(elemento);
 }
@@ -326,16 +326,16 @@ unsigned int Model::trovaElementoNelCatalogo(const QStringList l) const {
     if(l.at(0) != "null") {
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(4).toStdString(), l.at(5).toStdString(), l.at(6).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString(), l.at(6).toStdString());
+                                   l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "m")
             elemento = new Mensile(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString());
+                                   l.at(5).toInt(), l.at(6).toStdString());
         if(l.at(0) == "s")
             elemento = new Settimanale(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                       l.at(4).toInt(), l.at(5).toStdString());
+                                       l.at(5).toInt(), l.at(6).toStdString());
     }
     return catalogo.getIndex(elemento);
 }
@@ -364,16 +364,16 @@ void Model::aggiungiNelCatalogo(const QStringList l) {
 
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(4).toStdString(), l.at(5).toStdString(), l.at(6).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString(), l.at(6).toStdString());
+                                   l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "m")
             elemento = new Mensile(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                   l.at(4).toInt(), l.at(5).toStdString());
+                                   l.at(5).toInt(), l.at(6).toStdString());
         if(l.at(0) == "s")
             elemento = new Settimanale(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                       l.at(4).toInt(), l.at(5).toStdString());
+                                       l.at(5).toInt(), l.at(6).toStdString());
         catalogo.pushInOrder(elemento);
     }
     emit elementoAggiunto();
