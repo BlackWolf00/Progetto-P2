@@ -256,7 +256,7 @@ QStringList Model::getCatalogo() const {
     auto it = catalogo.begin();
     if(!catalogo.is_empty()) {
         while(it != catalogo.end()) {
-            label = (QString::fromStdString((*(*it)).getTitolo() + " " + (*(*it)).getGenere()) + " " );
+            label = (QString::fromStdString((*(*it)).getTitolo() + " (" + (*(*it)).getAutore()) + ")" );
             stampa.push_back(label);
             ++it;
         }
@@ -273,7 +273,7 @@ QStringList Model::getCatalogoFiltrato(const QString filtro, QMap<unsigned int, 
     unsigned int count = 0;
     if(!catalogo.is_empty()) {
         while(it!=catalogo.end()) {
-            label = (QString::fromStdString((*(*it)).getTitolo() + " " + (*(*it)).getGenere()) + " ");
+            label = (QString::fromStdString((*(*it)).getTitolo() + " (" + (*(*it)).getAutore()) + ")");
             if(label.contains(regex)) {
                 map.insert((uint)stampa.count(), count);
                 stampa.push_back(label);

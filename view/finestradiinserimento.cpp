@@ -339,8 +339,8 @@ void FinestraDiInserimento::conferma() {
         tmp->push_back(editoreL->text());
     }
     if (fumetto->isChecked()) {
-        tmp->push_back(numeroUscitaF->text());
         tmp->push_back(autoreF->text());
+        tmp->push_back(numeroUscitaF->text());
         tmp->push_back(editoreF->text());
     }
     if (settimanale->isChecked() || mensile->isChecked()) {

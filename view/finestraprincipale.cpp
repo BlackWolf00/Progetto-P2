@@ -117,7 +117,7 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
 
     boxAcquisto->addWidget(labelAcquisto);
     boxAcquisto->addWidget(acquisto);
-    boxAcquisto->addWidget(bottoneRimuoviAcquisto);
+    boxAcquisto->addWidget(bottoneRimuoviAcquisto); //Forse inserire scrivi quantita ma dovrei cambiare un po la gestione della rimozione
 
     continuaDettagli->addWidget(dettagli);
 
