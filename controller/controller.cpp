@@ -182,7 +182,7 @@ void Controller::apriSalvaPDF() const {
         painter.drawText(100, 200, "Cliente: " + finestraP->getNomeCliente());
         painter.drawText(3750, 200, "CF: " + finestraP->getCFCliente());
         painter.drawText(7750, 200, "Data: " + modello->getData().toString());
-        painter.drawText(1200, 100, "Noleggi");
+        painter.drawText(1600, 1000, "Noleggi");
         painter.drawText(6300, 1000, "Acquisti");
 
         int l = 800, a1 = 1400;
