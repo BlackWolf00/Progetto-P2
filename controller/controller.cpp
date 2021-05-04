@@ -7,14 +7,23 @@ Controller::Controller(QWidget *parent) : QWidget(parent), modello(new Model(thi
 
     connect(finestraP, SIGNAL(clickAcquisto(const unsigned int, const unsigned int)), this,
             SLOT(aggiungiAdAcquisto(const unsigned int, const unsigned int)));
+    connect(finestraP, SIGNAL(clickNoleggio(const unsigned int,const unsigned int)), this,
+            SLOT(aggiungiANoleggio(const unsigned int,const unsigned int)));
+
     connect(finestraP, SIGNAL(richiestaRimuoviDaCatalogo(const unsigned int)), this,
             SLOT(removeCatalogo(const unsigned int)));
     connect(finestraP, SIGNAL(clickRimuoviAcquisto(const unsigned int)), this,
             SLOT(removeAcquisto(const unsigned int)));
+    connect(finestraP, SIGNAL(clickRimuoviNoleggio(const unsigned int)), this,
+            SLOT(removeNoleggio(const unsigned int)));
+
     connect(finestraP, SIGNAL(richiestaDettagliCatalogo(const unsigned int)), this,
             SLOT(getDettagliCatalogo(const unsigned int)));
     connect(finestraP, SIGNAL(richiestaDettagliAcquisto(const unsigned int)), this,
             SLOT(getDettagliAcquisto(const unsigned int)));
+    connect(finestraP, SIGNAL(richiestaDettagliNoleggio(const unsigned int)), this,
+            SLOT(getDettagliNoleggio(const unsigned int)));
+
     connect(finestraP, SIGNAL(apriFinestraAggiungiACatalogo()), this, SLOT(apriAggiungi()));
     connect(finestraP, SIGNAL(richiestaModifica()), this, SLOT(apriModifica()));
     connect(finestraP, SIGNAL(apriFinestraSalvataggio()), this, SLOT(apriSalva()));
@@ -31,8 +40,11 @@ Controller::Controller(QWidget *parent) : QWidget(parent), modello(new Model(thi
 
     connect(modello, SIGNAL(elementoAggiunto()), this, SLOT(refreshCatalogo()));
     connect(modello, SIGNAL(acquistoAggiunto()), this, SLOT(refreshAcquisto()));
+    connect(modello, SIGNAL(noleggioAggiuto()), this, SLOT(refreshNoleggio()));
+
     connect(modello, SIGNAL(catalogoRimosso()), this, SLOT(refreshCatalogo()));
     connect(modello, SIGNAL(acquistoRimosso()), this, SLOT(refreshAcquisto()));
+    connect(modello, SIGNAL(noleggioRimosso()), this, SLOT(refreshNoleggio()));
 }
 
 void Controller::scambiaNelCatalogo(const unsigned int i, const QStringList dettagli) {
@@ -60,6 +72,11 @@ void Controller::aggiungiAdAcquisto(const unsigned int i, const unsigned int q) 
         modello->aggiungiAcquisto(indexTranslate[i], q);
 }
 
+void Controller::aggiungiANoleggio(const unsigned int i, const unsigned int q) {
+    if(q != 0)
+        modello->aggiungiNolleggio(indexTranslate[i], q);
+}
+
 void Controller::removeCatalogo(const unsigned int i) {
     modello->rimuoviDaCatalogo(indexTranslate[i]);
     refreshCatalogo();
@@ -69,12 +86,20 @@ void Controller::removeAcquisto(const unsigned int i) {
     modello->rimuoviAcquisto(i);
 }
 
+void Controller::removeNoleggio(const unsigned int i) {
+    modello->rimuoviNoleggio(i);
+}
+
 void Controller::getDettagliCatalogo(const unsigned int i) const {
     finestraP->displayDettagli(modello->getDettagliCatalogo(indexTranslate[i]));
 }
 
 void Controller::getDettagliAcquisto(const unsigned int i) const {
     finestraP->displayDettagli(modello->getDettagliAcquisto(i));
+}
+
+void Controller::getDettagliNoleggio(const unsigned int i) const {
+    finestraP->displayDettagli(modello->getDettagliNoleggio(i));
 }
 
 void Controller::sendPerScambio(const unsigned int i, const QStringList elemento) {
@@ -87,9 +112,14 @@ void Controller::refreshCatalogo() {
     finestraP->displayCatalogo(modello->getCatalogoFiltrato(filter, indexTranslate));
 }
 
-void Controller::refreshAcquisto() {        //da sostituire primo metodo con getPrezziNoleggio
+void Controller::refreshAcquisto() {
     finestraP->displayAcquisto(modello->getAcquisto());
-    finestraP->displayTotale(modello->getPrezziAcquisto(), modello->getPrezziAcquisto());
+    finestraP->displayTotale(modello->getPrezziNoleggio(), modello->getPrezziAcquisto());
+}
+
+void Controller::refreshNoleggio() {
+    finestraP->displayNoleggio(modello->getNoleggio());
+    finestraP->displayTotale(modello->getPrezziNoleggio(), modello->getPrezziAcquisto());
 }
 
 void Controller::apriAggiungi() const {
@@ -131,6 +161,7 @@ void Controller::apriCarica() {
         modello->setFilename(file);
         finestraP->displayCarica(modello->caricaDati());
         refreshCatalogo();
+        refreshNoleggio();
         refreshAcquisto();
     }
 }
@@ -142,7 +173,7 @@ void Controller::apriSalvaPDF() const {
     else {
         if(!file.endsWith(".pdf"))
             file = file + ".pdf";
-        //QStringList r = modello->getNoleggio();
+        QStringList r = modello->getNoleggio();
         QStringList a = modello->getAcquisto();
         QPdfWriter writer(file);
         QPainter painter(&writer);
@@ -151,16 +182,33 @@ void Controller::apriSalvaPDF() const {
         painter.drawText(100, 200, "Cliente: " + finestraP->getNomeCliente());
         painter.drawText(3750, 200, "CF: " + finestraP->getCFCliente());
         painter.drawText(7750, 200, "Data: " + modello->getData().toString());
-        //painter.drawText(1200, 100, "Noleggio");
+        painter.drawText(1200, 100, "Noleggi");
         painter.drawText(6300, 1000, "Acquisti");
-        int l = 5800, a2 = 1400;
+
+        int l = 800, a1 = 1400;
+        auto noleggio_it = r.begin();
+        while(noleggio_it != r.end()) {
+            painter.drawText(l, a1, *noleggio_it);
+            noleggio_it++;
+            a1+=300;
+        }
+
+        l = 5800;
+        int a2 = 1400;
         auto acquisto_it = a.begin();
         while (acquisto_it != a.end()) {
             painter.drawText(l, a2, *acquisto_it);
             acquisto_it++;
             a2 += 300;
         }
-        painter.drawText(5950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
+        if(a1 > a2) {
+            painter.drawText(950, a1+500, "Totale noleggio: " + QString::number(modello->getPrezziNoleggio()) + "€");
+            painter.drawText(5950, a1+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
+        }
+        else {
+            painter.drawText(950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziNoleggio()) + "€");
+            painter.drawText(5950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
+        }
 
         painter.drawText(200, 13700, "Preventivo");
         painter.end();

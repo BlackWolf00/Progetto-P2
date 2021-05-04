@@ -32,7 +32,7 @@ public:
     void rimuoviNoleggio(const unsigned int);
     void rimuoviAcquisto(const unsigned int);
 
-    void aggiungiNolleggio(const unsigned int, const unsigned int);
+    void aggiungiNolleggio(const unsigned int, const unsigned int); //CORREGGERE NOME
     void aggiungiAcquisto(const unsigned int, const unsigned int);
 
     bool modificaOggetto(const unsigned int, const QStringList);
