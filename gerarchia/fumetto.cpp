@@ -1,7 +1,7 @@
 #include "fumetto.h"
 
-Fumetto::Fumetto(string t, string g, double p, int n, string a, string e)
-    : Item(t, g, p), numeroUscita(n), autore(a), editore(e) {}
+Fumetto::Fumetto(string t, string g, double p, double pn, int n, string a, string e)
+    : Item(t, g, p, pn), numeroUscita(n), autore(a), editore(e) {}
 
 Fumetto::Fumetto(const Fumetto& f) : Item(f), numeroUscita(f.getNumeroUscita()), autore(f.getAutore()),
     editore(f.getEditore()) {}
@@ -43,7 +43,7 @@ string Fumetto::print() const {
 Fumetto *Fumetto::unserialize(QXmlStreamReader &rd) {
     QString t = "--Empty--", g = "--Empty--", a = "--Empty--",
             e = "--Empty--";
-    double p = 0;
+    double p = 0, pn = 0;
     unsigned int n = 0;
 
     if (rd.readNextStartElement() && rd.name() == "titolo")
@@ -55,6 +55,9 @@ Fumetto *Fumetto::unserialize(QXmlStreamReader &rd) {
     if (rd.readNextStartElement() && rd.name() == "prezzo")
         p = rd.readElementText().toDouble();
 
+    if (rd.readNextStartElement() && rd.name() == "prezzoNoleggio")
+        pn = rd.readElementText().toDouble();
+
     if (rd.readNextStartElement() && rd.name() == "autore")
         a = rd.readElementText();
 
@@ -65,7 +68,7 @@ Fumetto *Fumetto::unserialize(QXmlStreamReader &rd) {
         e = rd.readElementText();
 
     rd.skipCurrentElement();
-    return new Fumetto(t.toStdString(), g.toStdString(), p, n,
+    return new Fumetto(t.toStdString(), g.toStdString(), p, pn, n,
                      a.toStdString(), e.toStdString());
 }
 
@@ -83,6 +86,10 @@ void Fumetto::serializzaDati(QXmlStreamWriter &wr) const {
 
     wr.writeStartElement("prezzo");
     wr.writeCharacters(QString::number(getPrezzo()));
+    wr.writeEndElement();
+
+    wr.writeStartElement("prezzoNoleggio");
+    wr.writeCharacters(QString::number(getPrezzoNoleggio()));
     wr.writeEndElement();
 
     wr.writeStartElement("numeroUscita");

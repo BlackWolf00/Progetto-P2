@@ -1,7 +1,7 @@
 #include "rivista.h"
 
-Rivista::Rivista(string t, string g, double p, int u, string e)
-    : Item(t, g, p), numeroUscita(u), editore(e) {}
+Rivista::Rivista(string t, string g, double p, double pn, int u, string e)
+    : Item(t, g, p, pn), numeroUscita(u), editore(e) {}
 
 Rivista::Rivista(const Rivista& r) : Item(r), numeroUscita(r.getNumeroUscita()), editore(r.getEditore()) {}
 

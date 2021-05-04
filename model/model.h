@@ -29,34 +29,34 @@ public:
     explicit Model(QObject *parent = nullptr);
 
     void rimuoviDaCatalogo(const unsigned int);
-    //void rimuoviNoleggio(const unsigned int);
+    void rimuoviNoleggio(const unsigned int);
     void rimuoviAcquisto(const unsigned int);
 
-    //void aggiungiNolleggio();
+    void aggiungiNolleggio(const unsigned int, const unsigned int);
     void aggiungiAcquisto(const unsigned int, const unsigned int);
 
     bool modificaOggetto(const unsigned int, const QStringList);
 
     QString getDettagliCatalogo(const unsigned int) const;
-    //QString getDettagliNoleggio(const unsigned int) const;
+    QString getDettagliNoleggio(const unsigned int) const;
     QString getDettagliAcquisto(const unsigned int) const;
 
     QStringList getElementiCatalogo(const unsigned int) const;
-    //QStringList getElementeiNoleggio(const unsigned int) const;
+    QStringList getElementeiNoleggio(const unsigned int) const;
     QStringList getElementiAcquisto(const unsigned int) const;
 
-    //unsigned int getQuantitaNoleggio(const unsigned int) const;
+    unsigned int getQuantitaNoleggio(const unsigned int) const;
     unsigned int getQuantitaAcquisto(const unsigned int) const;
 
-    //void setQuantitaNoleggio(const unsigned int, const unsigned int);
+    void setQuantitaNoleggio(const unsigned int, const unsigned int);
     void setQuantitaAcquisto(const unsigned int, const unsigned int);
 
     QStringList getCatalogo() const;
     QStringList getCatalogoFiltrato(const QString, QMap<unsigned int, unsigned int> &) const;
-    //QStringList getNoleggio() const;
+    QStringList getNoleggio() const;
     QStringList getAcquisto() const;
 
-    //double getPrezziNoleggio() const;
+    double getPrezziNoleggio() const;
     double getPrezziAcquisto() const;
 
     bool controllaNelCatalogo(const QStringList) const;
@@ -80,18 +80,18 @@ public slots:
 signals:
 
     void mostraCatalogo(const QStringList);
-    //void quantitaCambiataNoleggio();
+    void quantitaCambiataNoleggio();
     void quantitaCambiataAcquisto();
     void elementiRimossiDaCatalogo();
-    //void elementiRimossiDaNoleggio();
+    void elementiRimossiDaNoleggio();
     void elementiRimossiDaAcquisto();
     void nomeCambiato();
     void quantitaCambiata();
     void elementoAggiunto();
-    //void noleggioAggiuto();
+    void noleggioAggiuto();
     void acquistoAggiunto();
     void catalogoRimosso();
-    //void noleggioRimosso();
+    void noleggioRimosso();
     void acquistoRimosso();
 };
 

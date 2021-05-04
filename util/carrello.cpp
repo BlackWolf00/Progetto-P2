@@ -70,6 +70,16 @@ double Carrello::getTotalePrezzoAcquisto() const {
     return totale;
 }
 
+double Carrello::getTotalePrezzoNoleggio() const {
+    double totale = 0;
+    double costo_tmp = 0;
+    for(auto it = carrello.begin(); it != carrello.end(); it++) {
+        costo_tmp = (*(it.key())).getPrezzoNoleggio();
+        totale += it.value() * costo_tmp;
+    }
+    return totale;
+}
+
 void Carrello::setQuantita(DeepPtr<Item> i, unsigned int q) {
     auto it = carrello.find(i);
     it.value() = q;

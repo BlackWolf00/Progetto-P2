@@ -10,7 +10,7 @@ private:
     string autore;
     string editore;
 public:
-    Fumetto(string t, string g, double p, int n, string a, string e);
+    Fumetto(string t, string g, double p, double pn, int n, string a, string e);
     Fumetto(const Fumetto&);
     Fumetto* clone() const;
 

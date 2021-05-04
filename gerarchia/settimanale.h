@@ -10,7 +10,7 @@ class Settimanale : public Rivista
 private:
 
 public:
-    Settimanale(string t, string g, double p, int u, string e);
+    Settimanale(string t, string g, double p, double pn, int u, string e);
     Settimanale(const Settimanale&);
     virtual Settimanale* clone() const;
 

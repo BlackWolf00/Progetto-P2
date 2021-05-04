@@ -3,7 +3,6 @@
 
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-//#include <string>
 
 using std::string;
 
@@ -13,8 +12,9 @@ private:
     string titolo;
     string genere;
     const double prezzo;
+    const double prezzoNoleggio;
 public:
-    Item(string t, string g, double p);
+    Item(string t, string g, double p, double pn);
     Item(const Item&);
     virtual Item*clone() const = 0;
     virtual ~Item() = default;
@@ -22,6 +22,7 @@ public:
     string getTitolo() const;
     string getGenere() const;
     double getPrezzo() const;
+    double getPrezzoNoleggio() const;
 
     virtual bool operator==(const Item&) const;
     virtual bool operator!=(const Item&) const;

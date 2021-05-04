@@ -27,7 +27,7 @@ public:
     unsigned int rimuoviQuantita(DeepPtr<Item>, unsigned int);
     unsigned int getQuantita(DeepPtr<Item>) const;
     double getTotalePrezzoAcquisto() const;
-    //double getTotalePrezzoNoleggio() const;
+    double getTotalePrezzoNoleggio() const;
     void setQuantita(DeepPtr<Item>, unsigned int);
     bool is_vuoto() const;
     void pulisci();

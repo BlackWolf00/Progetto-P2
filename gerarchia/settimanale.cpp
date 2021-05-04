@@ -1,7 +1,7 @@
 #include "settimanale.h"
 
-Settimanale::Settimanale(string t, string g, double p, int u, string e)
-    : Rivista(t, g, p, u, e) {}
+Settimanale::Settimanale(string t, string g, double p, double pn, int u, string e)
+    : Rivista(t, g, p, pn, u, e) {}
 
 Settimanale::Settimanale(const Settimanale& s) : Rivista(s) {}
 
@@ -27,7 +27,7 @@ string Settimanale::print() const {
 
 Settimanale *Settimanale::unserialize(QXmlStreamReader &rd) {
     QString t = "--Empty--", g = "--Empty--", e = "--Empty--";
-    double p = 0;
+    double p = 0, pn = 0;
     int n = 0;
 
     if (rd.readNextStartElement() && rd.name() == "titolo")
@@ -39,6 +39,9 @@ Settimanale *Settimanale::unserialize(QXmlStreamReader &rd) {
     if (rd.readNextStartElement() && rd.name() == "prezzo")
         p = rd.readElementText().toDouble();
 
+    if (rd.readNextStartElement() && rd.name() == "prezzoNoleggio")
+        pn = rd.readElementText().toDouble();
+
     if (rd.readNextStartElement() && rd.name() == "numeroUscita")
         n = rd.readElementText().toInt();
 
@@ -46,7 +49,7 @@ Settimanale *Settimanale::unserialize(QXmlStreamReader &rd) {
         e = rd.readElementText();
 
     rd.skipCurrentElement();
-    return new Settimanale(t.toStdString(), g.toStdString(), p, n, e.toStdString());
+    return new Settimanale(t.toStdString(), g.toStdString(), p, pn, n, e.toStdString());
 }
 
 void Settimanale::serializzaDati(QXmlStreamWriter &wr) const {
@@ -63,6 +66,10 @@ void Settimanale::serializzaDati(QXmlStreamWriter &wr) const {
 
     wr.writeStartElement("prezzo");
     wr.writeCharacters(QString::number(getPrezzo()));
+    wr.writeEndElement();
+
+    wr.writeStartElement("prezzoNoleggio");
+    wr.writeCharacters(QString::number(getPrezzoNoleggio()));
     wr.writeEndElement();
 
     wr.writeStartElement("numeroUscita");

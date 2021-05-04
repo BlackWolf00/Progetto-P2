@@ -1,10 +1,10 @@
 #include "item.h"
 
-Item::Item(string t, string g, double p)
-    : titolo(t), genere(g), prezzo(p) {}
+Item::Item(string t, string g, double p, double pn)
+    : titolo(t), genere(g), prezzo(p), prezzoNoleggio(pn) {}
 
 Item::Item(const Item& i)
-    : titolo(i.titolo), genere(i.genere), prezzo(i.prezzo) {}
+    : titolo(i.titolo), genere(i.genere), prezzo(i.prezzo), prezzoNoleggio(i.prezzoNoleggio) {}
 
 bool Item::operator==(const Item& i) const {
     return match(titolo, i.getTitolo()) && match(genere, i.getGenere());
@@ -65,6 +65,10 @@ string Item::getGenere() const {
 
 double Item::getPrezzo() const {
     return prezzo;
+}
+
+double Item::getPrezzoNoleggio() const {
+    return prezzoNoleggio;
 }
 
 string Item::print() const {

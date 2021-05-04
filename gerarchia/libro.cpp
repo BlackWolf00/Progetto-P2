@@ -1,10 +1,10 @@
 #include "libro.h"
 
-Libro::Libro(string t, string g, double p, string a, string e, string c)
-    : Item(t, g, p), autore(a), annoEdizione(e), editore(c) {}
+Libro::Libro(string t, string g, double p, double pn, string a, string e, string c)
+    : Item(t, g, p, pn), autore(a), annoEdizione(e), editore(c) {}
 
 Libro::Libro(const Libro& l) : Item(l), autore(l.getAutore()), annoEdizione(l.getAnnoEdizione()),
-    editore(l.getEditore()) {}
+    editore(l.getEditore()) {} //FORSE DA CORREGGERE con l.autore ed ecc...
 
 Libro *Libro::clone() const {
     return new Libro(*this);
@@ -32,7 +32,7 @@ string Libro::getEditore() const {
     return editore;
 }
 
-int Libro::getNumeroUscita() const { //da fixare
+int Libro::getNumeroUscita() const { //da rimuovere o fixare
     return 0;
 }
 
@@ -47,7 +47,7 @@ string Libro::print() const {
 Libro *Libro::unserialize(QXmlStreamReader &rd) {
     QString t = "--Empty--", g = "--Empty--", a = "--Empty--",
             e = "--Empty--", c = "--Empty--";
-    double p = 0;
+    double p = 0, pn = 0;
 
     if (rd.readNextStartElement() && rd.name() == "titolo")
         t = rd.readElementText();
@@ -57,6 +57,9 @@ Libro *Libro::unserialize(QXmlStreamReader &rd) {
 
     if (rd.readNextStartElement() && rd.name() == "prezzo")
         p = rd.readElementText().toDouble();
+
+    if (rd.readNextStartElement() && rd.name() == "prezzoNoleggio")
+        pn = rd.readElementText().toDouble();
 
     if (rd.readNextStartElement() && rd.name() == "autore")
         a = rd.readElementText();
@@ -68,7 +71,7 @@ Libro *Libro::unserialize(QXmlStreamReader &rd) {
         c = rd.readElementText();
 
     rd.skipCurrentElement();
-    return new Libro(t.toStdString(), g.toStdString(), p, a.toStdString(),
+    return new Libro(t.toStdString(), g.toStdString(), p, pn, a.toStdString(),
                      e.toStdString(), c.toStdString());
 }
 
@@ -86,6 +89,10 @@ void Libro::serializzaDati(QXmlStreamWriter &wr) const {
 
     wr.writeStartElement("prezzo");
     wr.writeCharacters(QString::number(getPrezzo()));
+    wr.writeEndElement();
+
+    wr.writeStartElement("prezzoNoleggio");
+    wr.writeCharacters(QString::number(getPrezzoNoleggio()));
     wr.writeEndElement();
 
     wr.writeStartElement("autore");

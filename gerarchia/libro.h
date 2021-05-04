@@ -10,7 +10,7 @@ private:
     string annoEdizione;
     string editore;
 public:
-    Libro(string t, string g, double p, string a,  string e, string c);
+    Libro(string t, string g, double p, double pn,string a,  string e, string c);
     Libro(const Libro&);
     Libro* clone() const;
     string getAnnoEdizione() const;
