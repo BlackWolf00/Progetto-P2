@@ -99,8 +99,8 @@ QStringList Carrello::stampaCarrello() const {
 
     auto it = carrello.begin();
     while(it != carrello.end()) {
-        label = (QString::fromStdString(((it.key())->getAutore()) + " " + ((it.key())->getGenere())));
-        label += QString::fromStdString("    ");
+        label = (QString::fromStdString(((it.key())->getTitolo()) + "(" + ((it.key())->getGenere()) + ")"));
+        label += QString::fromStdString("        Copie: ");
         label += QString::number(it.value());
         stampa.push_back(label);
         ++it;
