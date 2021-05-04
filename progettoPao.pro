@@ -26,40 +26,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
         gerarchia/item.cpp \
         gerarchia/libro.cpp \
+        gerarchia/fumetto.cpp \
         gerarchia/rivista.cpp \
+        gerarchia/settimanale.cpp \
+        gerarchia/mensile.cpp \
         template/container.cpp \
         template/deepptr.cpp \
-    gerarchia/fumetto.cpp \
-    util/carrello.cpp \
-    model/model.cpp \
-    gerarchia/settimanale.cpp \
-    gerarchia/mensile.cpp \
-    view/finestraprincipale.cpp \
-    view/finestradiinserimento.cpp \
-    view/finestradimodifica.cpp \
-    controller/controller.cpp \
-    util/listasmart.cpp \
-    util/xmlio.cpp
+        util/carrello.cpp \
+        model/model.cpp \
+        util/xmlio.cpp \
+        view/finestraprincipale.cpp \
+        view/finestradimodifica.cpp \
+        util/listasmart.cpp \
+        view/finestradiinserimento.cpp \
+        controller/controller.cpp \
+        main.cpp
 
 HEADERS += \
-        mainwindow.h \
         gerarchia/item.h \
         gerarchia/libro.h \
+        gerarchia/fumetto.h \
         gerarchia/rivista.h \
+        gerarchia/settimanale.h \
+        gerarchia/mensile.h \
         template/container.h \
         template/deepptr.h \
-    gerarchia/fumetto.h \
-    util/carrello.h \
-    model/model.h \
-    gerarchia/settimanale.h \
-    gerarchia/mensile.h \
-    view/finestraprincipale.h \
-    view/finestradiinserimento.h \
-    view/finestradimodifica.h \
-    controller/controller.h \
-    util/listasmart.h \
-    util/xmlio.h
+        util/carrello.h \
+        model/model.h \
+        util/xmlio.h \
+        view/finestraprincipale.h \
+        view/finestradimodifica.h \
+        util/listasmart.h \
+        view/finestradiinserimento.h \
+        controller/controller.h \
