@@ -23,9 +23,13 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
             prezzo->setText(l.at(3));
         else
             prezzo->setText(l.at(3)+".0");
-        autoreL->setText(l.at(4));
-        annoEdizione->setText(l.at(5));
-        editoreL->setText(l.at(6));
+        if(l.at(4).contains(trovaPunto))
+            prezzoNoleggio->setText(l.at(4));
+        else
+            prezzoNoleggio->setText(l.at(4) + ".0");
+        autoreL->setText(l.at(5));
+        annoEdizione->setText(l.at(6));
+        editoreL->setText(l.at(7));
     }
     else {
         if (l.at(0) == "f") {
@@ -43,9 +47,13 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                 prezzo->setText(l.at(3));
             else
                 prezzo->setText(l.at(3)+".0");
-            numeroUscitaF->setText(l.at(4));
+            if(l.at(4).contains(trovaPunto))
+                prezzoNoleggio->setText(l.at(4));
+            else
+                prezzoNoleggio->setText(l.at(4) + ".0");
             autoreF->setText(l.at(5));
-            editoreF->setText(l.at(6));
+            numeroUscitaF->setText(l.at(6));
+            editoreF->setText(l.at(7));
         }
         else {
             if (l.at(0) == "s") {
@@ -63,8 +71,12 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                     prezzo->setText(l.at(3));
                 else
                     prezzo->setText(l.at(3)+".0");
-                numeroUscitaR->setText(l.at(4));
-                editoreR->setText(l.at(5));
+                if(l.at(4).contains(trovaPunto))
+                    prezzoNoleggio->setText(l.at(4));
+                else
+                    prezzoNoleggio->setText(l.at(4) + ".0");
+                numeroUscitaR->setText(l.at(5));
+                editoreR->setText(l.at(6));
             }
             else {
                 if (l.at(0) == "m") {
@@ -82,8 +94,12 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                         prezzo->setText(l.at(3));
                     else
                         prezzo->setText(l.at(3)+".0");
-                    numeroUscitaR->setText(l.at(4));
-                    editoreR->setText(l.at(5));
+                    if(l.at(4).contains(trovaPunto))
+                        prezzoNoleggio->setText(l.at(4));
+                    else
+                        prezzoNoleggio->setText(l.at(4) + ".0");
+                    numeroUscitaR->setText(l.at(5));
+                    editoreR->setText(l.at(6));
                 }
                 else {
                     dettagliLibro->setVisible(false);
@@ -122,14 +138,15 @@ void FinestraDiModifica::conferma() {
     tmp->push_back(titolo->text());
     tmp->push_back(genere->text());
     tmp->push_back(prezzo->text());
+    tmp->push_back(prezzoNoleggio->text());
     if (libro->isChecked()) {
         tmp->push_back(autoreL->text());
         tmp->push_back(annoEdizione->text());
         tmp->push_back(editoreL->text());
     }
     if (fumetto->isChecked()) {
-        tmp->push_back(numeroUscitaF->text());
         tmp->push_back(autoreF->text());
+        tmp->push_back(numeroUscitaF->text());
         tmp->push_back(editoreF->text());
     }
     if (settimanale->isChecked() || mensile->isChecked()) {
@@ -137,8 +154,8 @@ void FinestraDiModifica::conferma() {
         tmp->push_back(editoreR->text());
     }
 
-    if (prezzo->text().contains(regexNumber)) {
-        emit mandaDettagliOggetto(*tmp);
+    if (prezzo->text().contains(regexNumber) && prezzoNoleggio->text().contains(regexNumber)) {
+        emit rimpiazzaOggetto(ind, *tmp);
         this->close();
     }
     else
