@@ -18,9 +18,9 @@ public:
     bool operator ==(const Item&) const;
     bool operator !=(const Item&) const;
 
-    virtual string getAutore() const;
     virtual string getEditore() const;
 
+    string getAutore() const;
     string print() const;
 
     QString getType() const;

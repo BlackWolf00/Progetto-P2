@@ -23,10 +23,6 @@ string Rivista::getEditore() const {
     return editore;
 }
 
-string Rivista::getAutore() const { //eliminare
-    return 0;
-}
-
 string Rivista::print() const {
     return Item::print() + "\n" + "Tipologia: Rivista" + "\n" + "Numero Uscita: " + std::to_string(numeroUscita) + "\n" + "Editore " + editore + "\n";
 }
