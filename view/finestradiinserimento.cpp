@@ -14,7 +14,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     ok(new QPushButton("Conferma")), no(new QPushButton("Annulla")),
     dettagliBase(new QGroupBox("Dettagli base del prodotto", this)),
     boxElementoSelezionato(new QGroupBox("Seleziona un prodotto", this)),
-    boxTipoSelezionato(new QGroupBox("Tipo di rivista", this)),
+    //boxTipoSelezionato(new QGroupBox("Tipo di rivista", this)),
     dettagliLibro(new QGroupBox("Dettagli Libro")),
     dettagliFumetto(new QGroupBox("Dettagli Fumetto", this)),
     dettagliMensile(new QGroupBox("Dettagli Mensile", this)),

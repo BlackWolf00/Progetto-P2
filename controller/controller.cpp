@@ -140,7 +140,7 @@ void Controller::apriModifica() const {
 }
 
 void Controller::apriSalva() const {
-    QString file = QFileDialog::getSaveFileName(finestraP, "salva", "../progetto/cataloghi", "Catalogo (*.xml)");
+    QString file = QFileDialog::getSaveFileName(finestraP, "Salva Catalogo", "../progetto/cataloghi", "Catalogo (*.xml)");
     if(file == "")
         modello->setFilename("catalogo.xml");
     else {
@@ -152,7 +152,7 @@ void Controller::apriSalva() const {
 }
 
 void Controller::apriCarica() {
-    QString file = QFileDialog::getOpenFileName(finestraP, "carica", "../progetto/cataloghi", "Catalogo (*.xml");
+    QString file = QFileDialog::getOpenFileName(finestraP, "Carica Catalogo", "../progetto/cataloghi", "Catalogo (*.xml)");
     if(file == "")
         finestraP->displayErroreApertura();
     else {
