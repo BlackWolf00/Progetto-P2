@@ -32,7 +32,6 @@ public:
     static bool match(string, string);
 
     virtual string getAutore() const = 0;
-    virtual int getNumeroUscita() const = 0;
     virtual string getEditore() const = 0;
 
     virtual QString getType() const = 0;

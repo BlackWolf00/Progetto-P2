@@ -18,9 +18,8 @@ public:
     bool operator ==(const Item&) const;
     bool operator !=(const Item&) const;
 
-    virtual string getAutore() const override;
-    virtual int getNumeroUscita() const override;
-    virtual string getEditore() const override;
+    virtual string getAutore() const;
+    virtual string getEditore() const;
 
     string print() const;
 

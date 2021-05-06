@@ -32,10 +32,6 @@ string Libro::getEditore() const {
     return editore;
 }
 
-int Libro::getNumeroUscita() const { //da rimuovere o fixare
-    return 0;
-}
-
 QString Libro::getType() const {
     return "l";
 }
