@@ -34,7 +34,7 @@ bool Rivista::getMensile() const {
 
 string Rivista::print() const {
     if(settimanale)
-        return Item::print() + "\n" + "Tipologia: Rivista Settimanale" + "\n" + "Numero Uscita: " + std::to_string(numeroUscita) + "\n" + "Editore " + editore + "\n";
+        return Item::print() + "\n" + "Tipologia: Rivista Settimanale" + "\n" + "Numero Uscita: " + std::to_string(numeroUscita) + "\n" + "Editore: " + editore + "\n";
     else
-        return Item::print() + "\n" + "Tipologia: Rivista Mensile" + "\n" + "Numero Uscita: " + std::to_string(numeroUscita) + "\n" + "Editore " + editore + "\n";
+        return Item::print() + "\n" + "Tipologia: Rivista Mensile" + "\n" + "Numero Uscita: " + std::to_string(numeroUscita) + "\n" + "Editore: " + editore + "\n";
 }

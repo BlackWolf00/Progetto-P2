@@ -54,7 +54,7 @@ T& DeepPtr<T>::operator*() const{
 template <class T>
 DeepPtr<T>::~DeepPtr(){
     if(pted)
-        delete pted;      //elimina il T puntato dal mio puntatore con gestione della memoria
+        delete pted;
 }
 
 template <class T>

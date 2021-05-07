@@ -19,11 +19,11 @@ private:
 
     nodo* first;
 
-    static nodo* copy(const nodo*);                 //utilizzato nel costruttore di copia del contenitore
+    static nodo* copy(const nodo*);
 
     static void destroy(nodo*);
 
-    static bool search(nodo* ,const T&);            // utilizzata dalla search ad un parametro
+    static bool search(nodo* ,const T&);
 
     static bool isEqual(const nodo*, const nodo*);
 
