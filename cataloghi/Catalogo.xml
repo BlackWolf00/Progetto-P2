@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Catalogo Prodotti-->
+<catalogo>
+    <item type="l">
+        <titolo>1984</titolo>
+        <genere>Romanzo</genere>
+        <prezzo>16</prezzo>
+        <prezzoNoleggio>1</prezzoNoleggio>
+        <autore>George Orwell</autore>
+        <annoEdizione>1949</annoEdizione>
+        <editore>Mondadori</editore>
+    </item>
+    <item type="m">
+        <titolo>Aeronautica &amp; Difesa</titolo>
+        <genere>Militare</genere>
+        <prezzo>2.5</prezzo>
+        <prezzoNoleggio>0.5</prezzoNoleggio>
+        <numeroUscita>1231</numeroUscita>
+        <editore>Edizioni Monografie</editore>
+        <settimanale>0</settimanale>
+        <mensile>1</mensile>
+    </item>
+    <item type="m">
+        <titolo>AlVolante</titolo>
+        <genere>Automobilismo</genere>
+        <prezzo>2.5</prezzo>
+        <prezzoNoleggio>0.5</prezzoNoleggio>
+        <numeroUscita>1432</numeroUscita>
+        <editore>Editrice Universo</editore>
+        <settimanale>0</settimanale>
+        <mensile>1</mensile>
+    </item>
+    <item type="l">
+        <titolo>American Sniper</titolo>
+        <genere>Autobiografico</genere>
+        <prezzo>25</prezzo>
+        <prezzoNoleggio>2</prezzoNoleggio>
+        <autore>Chris Kyle</autore>
+        <annoEdizione>2012</annoEdizione>
+        <editore>Mondadori</editore>
+    </item>
+    <item type="f">
+        <titolo>Batman</titolo>
+        <genere>Giallo</genere>
+        <prezzo>4</prezzo>
+        <prezzoNoleggio>0.5</prezzoNoleggio>
+        <autore>Bob Kane</autore>
+        <numeroUscita>489</numeroUscita>
+        <editore>DC Comics</editore>
+    </item>
+    <item type="s">
+        <titolo>Donna Moderna</titolo>
+        <genere>Femminile</genere>
+        <prezzo>2</prezzo>
+        <prezzoNoleggio>0.2</prezzoNoleggio>
+        <numeroUscita>1892</numeroUscita>
+        <editore>Mondadori</editore>
+        <settimanale>1</settimanale>
+        <mensile>0</mensile>
+    </item>
+    <item type="f">
+        <titolo>Dylan Dog</titolo>
+        <genere>Horror</genere>
+        <prezzo>5</prezzo>
+        <prezzoNoleggio>0.8</prezzoNoleggio>
+        <autore>Tiziano Sclavi</autore>
+        <numeroUscita>22</numeroUscita>
+        <editore>Sergio Bonelli Editore</editore>
+    </item>
+    <item type="l">
+        <titolo>Eragon</titolo>
+        <genere>Fantasy</genere>
+        <prezzo>20</prezzo>
+        <prezzoNoleggio>2</prezzoNoleggio>
+        <autore>Cristopher Paolini</autore>
+        <annoEdizione>2002</annoEdizione>
+        <editore>Fabbri Editore</editore>
+    </item>
+    <item type="m">
+        <titolo>Focus</titolo>
+        <genere>Scienza</genere>
+        <prezzo>4</prezzo>
+        <prezzoNoleggio>1</prezzoNoleggio>
+        <numeroUscita>1526</numeroUscita>
+        <editore>Mondadori</editore>
+        <settimanale>0</settimanale>
+        <mensile>1</mensile>
+    </item>
+    <item type="m">
+        <titolo>La Cucina Italiana</titolo>
+        <genere>Gastronomia</genere>
+        <prezzo>3</prezzo>
+        <prezzoNoleggio>0.8</prezzoNoleggio>
+        <numeroUscita>782</numeroUscita>
+        <editore>Conde Nast</editore>
+        <settimanale>0</settimanale>
+        <mensile>1</mensile>
+    </item>
+    <item type="f">
+        <titolo>One Piece</titolo>
+        <genere>Fantasy</genere>
+        <prezzo>6</prezzo>
+        <prezzoNoleggio>1</prezzoNoleggio>
+        <autore>Eiichiro Oda</autore>
+        <numeroUscita>78</numeroUscita>
+        <editore>Shueisha</editore>
+    </item>
+    <item type="s">
+        <titolo>Panorama</titolo>
+        <genere>Attualità</genere>
+        <prezzo>2</prezzo>
+        <prezzoNoleggio>0.2</prezzoNoleggio>
+        <numeroUscita>890</numeroUscita>
+        <editore>Panorama S.R.L.</editore>
+        <settimanale>1</settimanale>
+        <mensile>0</mensile>
+    </item>
+    <item type="f">
+        <titolo>Tex</titolo>
+        <genere>Western</genere>
+        <prezzo>3</prezzo>
+        <prezzoNoleggio>0.4</prezzoNoleggio>
+        <autore>Giovanni Luigi Bonelli</autore>
+        <numeroUscita>590</numeroUscita>
+        <editore>Sergio Bonelli Editore</editore>
+    </item>
+    <item type="f">
+        <titolo>Topolino</titolo>
+        <genere>Per Bambini</genere>
+        <prezzo>5</prezzo>
+        <prezzoNoleggio>0.5</prezzoNoleggio>
+        <autore>Walt Disney</autore>
+        <numeroUscita>1500</numeroUscita>
+        <editore>Panini Comics</editore>
+    </item>
+    <item type="l">
+        <titolo>Uno studio in rosso</titolo>
+        <genere>Giallo</genere>
+        <prezzo>15</prezzo>
+        <prezzoNoleggio>1.5</prezzoNoleggio>
+        <autore>Arthur Conan Dyle</autore>
+        <annoEdizione>1887</annoEdizione>
+        <editore>Fabbri Editore</editore>
+    </item>
+    <item type="l">
+        <titolo>Va' dove ti porta il cuore</titolo>
+        <genere>Romanzo</genere>
+        <prezzo>12.5</prezzo>
+        <prezzoNoleggio>1</prezzoNoleggio>
+        <autore>Susanna Tamaro</autore>
+        <annoEdizione>1994</annoEdizione>
+        <editore>De Agostini</editore>
+    </item>
+    <item type="s">
+        <titolo>Vero</titolo>
+        <genere>Magazine</genere>
+        <prezzo>2.5</prezzo>
+        <prezzoNoleggio>0.5</prezzoNoleggio>
+        <numeroUscita>1273</numeroUscita>
+        <editore>Edizioni Vero</editore>
+        <settimanale>1</settimanale>
+        <mensile>0</mensile>
+    </item>
+</catalogo>
