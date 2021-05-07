@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Catalogo Prodotti-->
+<catalogo>
+    <item type="f">
+        <titolo>Fumetto</titolo>
+        <genere>rosa</genere>
+        <prezzo>15</prezzo>
+        <prezzoNoleggio>1.5</prezzoNoleggio>
+        <autore>au</autore>
+        <numeroUscita>232</numeroUscita>
+        <editore>op</editore>
+    </item>
+    <item type="m">
+        <titolo>Mensile</titolo>
+        <genere>genere</genere>
+        <prezzo>50</prezzo>
+        <prezzoNoleggio>2.9</prezzoNoleggio>
+        <numeroUscita>1</numeroUscita>
+        <editore>ed</editore>
+        <settimanale>0</settimanale>
+        <mensile>1</mensile>
+    </item>
+    <item type="s">
+        <titolo>Settimanale</titolo>
+        <genere>poliytico</genere>
+        <prezzo>5</prezzo>
+        <prezzoNoleggio>0.5</prezzoNoleggio>
+        <numeroUscita>89</numeroUscita>
+        <editore>ed</editore>
+        <settimanale>1</settimanale>
+        <mensile>0</mensile>
+    </item>
+    <item type="l">
+        <titolo>libro</titolo>
+        <genere>giallo</genere>
+        <prezzo>22</prezzo>
+        <prezzoNoleggio>2</prezzoNoleggio>
+        <autore>autore</autore>
+        <annoEdizione>anno</annoEdizione>
+        <editore>editore</editore>
+    </item>
+    <item type="m">
+        <titolo>mensi</titolo>
+        <genere>--Vuoto--</genere>
+        <prezzo>0</prezzo>
+        <prezzoNoleggio>0</prezzoNoleggio>
+        <numeroUscita>0</numeroUscita>
+        <editore>--Vuoto--</editore>
+        <settimanale>0</settimanale>
+        <mensile>1</mensile>
+    </item>
+</catalogo>

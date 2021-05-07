@@ -11,8 +11,7 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
     if (l.at(0) == "l") {
         dettagliLibro->setVisible(true);
         dettagliFumetto->setVisible(false);
-        dettagliSettimanale->setVisible(false);
-        dettagliMensile->setVisible(false);
+        dettagliRivista->setVisible(false);
 
         this->adjustSize();
 
@@ -35,8 +34,7 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
         if (l.at(0) == "f") {
             dettagliLibro->setVisible(false);
             dettagliFumetto->setVisible(true);
-            dettagliSettimanale->setVisible(false);
-            dettagliMensile->setVisible(false);
+            dettagliRivista->setVisible(false);
 
             this->adjustSize();
 
@@ -59,12 +57,13 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
             if (l.at(0) == "s") {
                 dettagliLibro->setVisible(false);
                 dettagliFumetto->setVisible(false);
-                dettagliSettimanale->setVisible(true);
-                dettagliMensile->setVisible(false);
+                dettagliRivista->setVisible(true);
 
                 this->adjustSize();
 
+                rivista->setChecked(true);
                 settimanale->setChecked(true);
+
                 titolo->setText(l.at(1));
                 genere->setText(l.at(2));
                 if(l.at(3).contains(trovaPunto))
@@ -77,17 +76,20 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                     prezzoNoleggio->setText(l.at(4) + ".0");
                 numeroUscitaR->setText(l.at(5));
                 editoreR->setText(l.at(6));
+                settimanale->setChecked(l.at(7) == "true" ? true:false);
+                mensile->setChecked(l.at(8) == "true" ? true:false);
             }
             else {
                 if (l.at(0) == "m") {
                     dettagliLibro->setVisible(false);
                     dettagliFumetto->setVisible(false);
-                    dettagliSettimanale->setVisible(false);
-                    dettagliMensile->setVisible(true);
+                    dettagliRivista->setVisible(true);
 
                     this->adjustSize();
 
+                    rivista->setChecked(true);
                     mensile->setChecked(true);
+
                     titolo->setText(l.at(1));
                     genere->setText(l.at(2));
                     if(l.at(3).contains(trovaPunto))
@@ -100,12 +102,13 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                         prezzoNoleggio->setText(l.at(4) + ".0");
                     numeroUscitaR->setText(l.at(5));
                     editoreR->setText(l.at(6));
+                    settimanale->setChecked(l.at(7) == "true" ? true:false);
+                    mensile->setChecked(l.at(8) == "true" ? true:false);
                 }
                 else {
                     dettagliLibro->setVisible(false);
                     dettagliFumetto->setVisible(false);
-                    dettagliSettimanale->setVisible(false);
-                    dettagliMensile->setVisible(false);
+                    dettagliRivista->setVisible(false);
 
                     this->adjustSize();
                 }
@@ -149,9 +152,17 @@ void FinestraDiModifica::conferma() {
         tmp->push_back(numeroUscitaF->text());
         tmp->push_back(editoreF->text());
     }
-    if (settimanale->isChecked() || mensile->isChecked()) {
+    if (settimanale->isChecked()) {
         tmp->push_back(numeroUscitaR->text());
         tmp->push_back(editoreR->text());
+        tmp->push_back(settimanale->isChecked() ? "true":"false");
+        tmp->push_back(mensile->isChecked() ? "true":"false");
+    }
+    if (mensile->isChecked()) {
+        tmp->push_back(numeroUscitaR->text());
+        tmp->push_back(editoreR->text());
+        tmp->push_back(settimanale->isChecked() ? "true":"false");
+        tmp->push_back(mensile->isChecked() ? "true":"false");
     }
 
     if (prezzo->text().contains(regexNumber) && prezzoNoleggio->text().contains(regexNumber)) {

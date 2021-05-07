@@ -5,20 +5,20 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     genere(new QLineEdit("--Vuoto--", this)), prezzo(new QLineEdit("0.0", this)),
     prezzoNoleggio(new QLineEdit("0.0", this)),
     autoreL(new QLineEdit("--Vuoto--", this)), autoreF(new QLineEdit("--Vuoto--", this)),
+    numeroUscitaF(new QLineEdit("0", this)), numeroUscitaR(new QLineEdit("0", this)),
     editoreL(new QLineEdit("--Vuoto--", this)), editoreF(new QLineEdit("--Vuoto--", this)),
     editoreR(new QLineEdit("--Vuoto--", this)),
     annoEdizione(new QLineEdit("--Vuoto--", this)),
-    numeroUscitaF(new QLineEdit("0", this)), numeroUscitaR(new QLineEdit("0", this)),
     libro(new QRadioButton("Libro", this)), fumetto(new QRadioButton("Fumetto", this)),
-    mensile(new QRadioButton("Mensile", this)), settimanale(new QRadioButton("Mensile", this)),
+    rivista(new QRadioButton("Rivista", this)),
+    mensile(new QCheckBox("Mensile", this)), settimanale(new QCheckBox("Settimanale", this)),
     ok(new QPushButton("Conferma")), no(new QPushButton("Annulla")),
     dettagliBase(new QGroupBox("Dettagli base del prodotto", this)),
     boxElementoSelezionato(new QGroupBox("Seleziona un prodotto", this)),
-    //boxTipoSelezionato(new QGroupBox("Tipo di rivista", this)),
     dettagliLibro(new QGroupBox("Dettagli Libro")),
     dettagliFumetto(new QGroupBox("Dettagli Fumetto", this)),
-    dettagliMensile(new QGroupBox("Dettagli Mensile", this)),
-    dettagliSettimanale(new QGroupBox("Dettagli Settimanale", this)) {
+    dettagliRivista(new QGroupBox("Dettagli Rivista", this)),
+    boxTipoSelezionato(new QGroupBox("Tipo di rivista", this)) {
 
     QVBoxLayout *layoutInserimentoPrincipale = new QVBoxLayout();
     QGridLayout *griglia = new QGridLayout();
@@ -71,16 +71,11 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     QHBoxLayout *layoutNumeroUscitaR = new QHBoxLayout();
     QHBoxLayout *layoutEditoreR = new QHBoxLayout();
 
-    QHBoxLayout *layoutNumeroUscita = new QHBoxLayout();
-    QHBoxLayout *layoutEditore = new QHBoxLayout();
-
     QVBoxLayout *layoutItemBase = new QVBoxLayout();
     QVBoxLayout *layoutLibro = new QVBoxLayout();
     QVBoxLayout *layoutFumetto = new QVBoxLayout();
-    //QVBoxLayout *layoutRivista = new QVBoxLayout();
-    QVBoxLayout *layoutMensile = new QVBoxLayout();
-    QVBoxLayout *layoutSettimanale = new QVBoxLayout();
-    //QVBoxLayout *layoutTipo = new QVBoxLayout();
+    QVBoxLayout *layoutRivista = new QVBoxLayout();
+    QVBoxLayout *layoutTipo = new QVBoxLayout();
     QVBoxLayout *layoutElemento = new QVBoxLayout();
 
     layoutTitolo->addWidget(labelTitolo);
@@ -134,38 +129,34 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     layoutFumetto->addLayout(layoutNumeroUscitaF);
     layoutFumetto->addLayout(layoutEditoreF);
 
-    //layoutRivista->addLayout(layoutNumeroUscita); Da rivedere con la sistemazione
-    //layoutRivista->addLayout(layoutEditore);
-
-    layoutMensile->addLayout(layoutNumeroUscita);
-    layoutMensile->addLayout(layoutEditore);
-
-    layoutSettimanale->addLayout(layoutNumeroUscitaR);
-    layoutSettimanale->addLayout(layoutEditoreR);
+    layoutRivista->addLayout(layoutNumeroUscitaR);
+    layoutRivista->addLayout(layoutEditoreR);
 
     layoutElemento->addWidget(libro);
     layoutElemento->addWidget(fumetto);
-    layoutElemento->addWidget(mensile);
-    layoutElemento->addWidget(settimanale);
+    layoutElemento->addWidget(rivista);
+
+    layoutTipo->addWidget(mensile);
+    layoutTipo->addWidget(settimanale);
 
     dettagliBase->setLayout(layoutItemBase);
     boxElementoSelezionato->setLayout(layoutElemento);
     dettagliLibro->setLayout(layoutLibro);
     dettagliFumetto->setLayout(layoutFumetto);
-    dettagliSettimanale->setLayout(layoutSettimanale);
-    dettagliMensile->setLayout(layoutMensile);
+    dettagliRivista->setLayout(layoutRivista);
+    boxTipoSelezionato->setLayout(layoutTipo);
 
     dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
-    dettagliSettimanale->setVisible(false);
-    dettagliMensile->setVisible(false);
+    dettagliRivista->setVisible(false);
+    boxTipoSelezionato->setVisible(false);
 
     griglia->addWidget(dettagliBase, 0,0);
     griglia->addWidget(boxElementoSelezionato, 0,1);
     griglia->addWidget(dettagliLibro, 1,0);
     griglia->addWidget(dettagliFumetto, 1,0);
-    griglia->addWidget(dettagliSettimanale, 1,0);
-    griglia->addWidget(dettagliMensile, 1,0);
+    griglia->addWidget(dettagliRivista, 1,0);
+    griglia->addWidget(boxTipoSelezionato, 1,1);
     griglia->addWidget(no, 2,0);
     griglia->addWidget(ok, 2,1);
 
@@ -173,8 +164,8 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     boxElementoSelezionato->setFixedWidth(300);
     dettagliLibro->setFixedWidth(300);
     dettagliFumetto->setFixedWidth(300);
-    dettagliSettimanale->setFixedWidth(300);
-    dettagliMensile->setFixedWidth(300);
+    dettagliRivista->setFixedWidth(300);
+    boxTipoSelezionato->setFixedWidth(300);
 
     layoutInserimentoPrincipale->addLayout(griglia);
     setLayout(layoutInserimentoPrincipale);
@@ -182,8 +173,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
 
     connect(libro, SIGNAL(clicked()), this, SLOT(showLibro()));
     connect(fumetto, SIGNAL(clicked()), this, SLOT(showFumetto()));
-    connect(settimanale, SIGNAL(clicked()), this, SLOT(showSettimanale()));
-    connect(mensile, SIGNAL(clicked()), this, SLOT(showMensile()));
+    connect(rivista, SIGNAL(clicked()), this, SLOT(showRivista()));
     connect(ok, SIGNAL(clicked()), this, SLOT(conferma()));
     connect(no, SIGNAL(clicked()), this, SLOT(annulla()));
 
@@ -194,8 +184,8 @@ void FinestraDiInserimento::resetPerNuovoInserimento() {
     boxElementoSelezionato->setVisible(false);
     dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
-    dettagliSettimanale->setVisible(false);
-    dettagliMensile->setVisible(false);
+    dettagliRivista->setVisible(false);
+    boxTipoSelezionato->setVisible(false);
 
     this->adjustSize();
 
@@ -212,16 +202,16 @@ void FinestraDiInserimento::resetPerNuovoInserimento() {
     numeroUscitaF->setText("0");
     numeroUscitaR->setText("0");
 
-    //libro->setAutoExclusive(false);
     libro->setChecked(false);
 
-    //fumetto->setAutoExclusive(false);
     fumetto->setChecked(false);
 
-    //settimanale->setAutoExclusive(false);
+    rivista->setChecked(false);
+
+    settimanale->setAutoExclusive(true);
     settimanale->setChecked(false);
 
-    //mensile->setAutoExclusive(false);
+    mensile->setAutoExclusive(true);
     mensile->setChecked(false);
 
     dettagliBase->setVisible(true);
@@ -237,16 +227,13 @@ void FinestraDiInserimento::displayErroreInput() {
 }
 
 void FinestraDiInserimento::showLibro() {
-    /*fumetto->setChecked(false);
-    settimanale->setChecked(false); Non servono perchè AutoExclusive è gia true
-    mensile->setChecked(false);*/
 
     dettagliBase->setVisible(false);
     boxElementoSelezionato->setVisible(false);
+    boxTipoSelezionato->setVisible(false);
     dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
-    dettagliSettimanale->setVisible(false);
-    dettagliMensile->setVisible(false);
+    dettagliRivista->setVisible(false);
 
     this->adjustSize();
 
@@ -260,10 +247,10 @@ void FinestraDiInserimento::showLibro() {
 void FinestraDiInserimento::showFumetto() {
     dettagliBase->setVisible(false);
     boxElementoSelezionato->setVisible(false);
+    boxTipoSelezionato->setVisible(false);
     dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
-    dettagliSettimanale->setVisible(false);
-    dettagliMensile->setVisible(false);
+    dettagliRivista->setVisible(false);
 
     this->adjustSize();
 
@@ -274,36 +261,23 @@ void FinestraDiInserimento::showFumetto() {
     this->adjustSize();
 }
 
-void FinestraDiInserimento::showSettimanale() {
+void FinestraDiInserimento::showRivista() {
     dettagliBase->setVisible(false);
     boxElementoSelezionato->setVisible(false);
+    boxTipoSelezionato->setVisible(false);
     dettagliLibro->setVisible(false);
     dettagliFumetto->setVisible(false);
-    dettagliSettimanale->setVisible(false);
-    dettagliMensile->setVisible(false);
+    dettagliRivista->setVisible(false);
 
     this->adjustSize();
+
+    mensile->setChecked(false);
+    settimanale->setChecked(false);
 
     dettagliBase->setVisible(true);
     boxElementoSelezionato->setVisible(true);
-    dettagliSettimanale->setVisible(true);
-
-    this->adjustSize();
-}
-
-void FinestraDiInserimento::showMensile() {
-    dettagliBase->setVisible(false);
-    boxElementoSelezionato->setVisible(false);
-    dettagliLibro->setVisible(false);
-    dettagliFumetto->setVisible(false);
-    dettagliSettimanale->setVisible(false);
-    dettagliMensile->setVisible(false);
-
-    this->adjustSize();
-
-    dettagliBase->setVisible(true);
-    boxElementoSelezionato->setVisible(true);
-    dettagliSettimanale->setVisible(true);      //SISTEMARE
+    boxTipoSelezionato->setVisible(true);
+    dettagliRivista->setVisible(true);
 
     this->adjustSize();
 }
@@ -343,9 +317,17 @@ void FinestraDiInserimento::conferma() {
         tmp->push_back(numeroUscitaF->text());
         tmp->push_back(editoreF->text());
     }
-    if (settimanale->isChecked() || mensile->isChecked()) {
+    if (settimanale->isChecked()) {
         tmp->push_back(numeroUscitaR->text());
         tmp->push_back(editoreR->text());
+        tmp->push_back(settimanale->isChecked() ? "true":"false");
+        tmp->push_back(mensile->isChecked() ? "true":"false");
+    }
+    if (mensile->isChecked()) {
+        tmp->push_back(numeroUscitaR->text());
+        tmp->push_back(editoreR->text());
+        tmp->push_back(settimanale->isChecked() ? "true":"false");
+        tmp->push_back(mensile->isChecked() ? "true":"false");
     }
 
     if (prezzo->text().contains(regexNumber)) {

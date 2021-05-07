@@ -210,7 +210,7 @@ void Controller::apriSalvaPDF() const {
             painter.drawText(5950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
         }
 
-        painter.drawText(200, 13700, "Preventivo");
+        painter.drawText(200, 13700, "Preventivo BiblioTech");
         painter.end();
     }
 }

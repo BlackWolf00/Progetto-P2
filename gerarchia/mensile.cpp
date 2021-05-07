@@ -1,7 +1,7 @@
 #include "mensile.h"
 
-Mensile::Mensile(string t, string g, double p, double pn, int u, string e)
-    : Rivista(t, g, p, pn, u, e) {}
+Mensile::Mensile(string t, string g, double p, double pn, int u, string e, bool s, bool m)
+    : Rivista(t, g, p, pn, u, e, s, m) {}
 
 Mensile::Mensile(const Mensile& m) : Rivista(m) {}
 
@@ -18,7 +18,7 @@ bool Mensile::operator!=(const Item& i) const {
 }
 
 QString Mensile::getType() const {
-    return "s";
+    return "m";
 }
 
 string Mensile::print() const {
@@ -29,6 +29,7 @@ Mensile *Mensile::unserialize(QXmlStreamReader &rd) {
     QString t = "--Empty--", g = "--Empty--", e = "--Empty--";
     double p = 0, pn = 0;
     int n = 0;
+    bool s = false, m = false;
 
     if (rd.readNextStartElement() && rd.name() == "titolo")
         t = rd.readElementText();
@@ -48,8 +49,14 @@ Mensile *Mensile::unserialize(QXmlStreamReader &rd) {
     if (rd.readNextStartElement() && rd.name() == "editore")
         e = rd.readElementText();
 
+    if(rd.readNextStartElement() && rd.name() == "settimanale")
+        s = rd.readElementText() == "1" ? true:false;
+
+    if(rd.readNextStartElement() && rd.name() == "mensile")
+        m = rd.readElementText() == "1" ? true:false;
+
     rd.skipCurrentElement();
-    return new Mensile(t.toStdString(), g.toStdString(), p, pn, n, e.toStdString());
+    return new Mensile(t.toStdString(), g.toStdString(), p, pn, n, e.toStdString(), s, m);
 }
 
 void Mensile::serializzaDati(QXmlStreamWriter &wr) const {
@@ -78,6 +85,14 @@ void Mensile::serializzaDati(QXmlStreamWriter &wr) const {
 
     wr.writeStartElement("editore");
     wr.writeCharacters(QString::fromStdString(getEditore()));
+    wr.writeEndElement();
+
+    wr.writeStartElement("settimanale");
+    wr.writeCharacters(QString::fromStdString(getSettimanale() ? "1" : "0"));
+    wr.writeEndElement();
+
+    wr.writeStartElement("mensile");
+    wr.writeCharacters(QString::fromStdString(getMensile() ? "1" : "0"));
     wr.writeEndElement();
 
     wr.writeEndElement();

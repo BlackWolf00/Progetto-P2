@@ -10,7 +10,7 @@ class Mensile : public Rivista
 private:
 
 public:
-    Mensile(string t, string g, double p, double pn, int u, string e);
+    Mensile(string t, string g, double p, double pn, int u, string e, bool s, bool m);
     Mensile(const Mensile&);
     virtual Mensile* clone() const;
 

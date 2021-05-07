@@ -18,18 +18,17 @@ class FinestraDiInserimento : public QDialog
 protected:
     QLineEdit *titolo, *genere, *prezzo, *prezzoNoleggio, *autoreL, *autoreF,
     *numeroUscitaF, *numeroUscitaR, *editoreL, *editoreF, *editoreR, *annoEdizione;
-    QRadioButton *libro, *fumetto, *mensile, *settimanale;
+    QRadioButton *libro, *fumetto, *rivista;
+    QCheckBox  *mensile, *settimanale;
 
     QPushButton *ok, *no;
 
     QGroupBox *dettagliBase;
     QGroupBox *boxElementoSelezionato;
-    QGroupBox *boxTipoSelezionato;
     QGroupBox *dettagliLibro;
     QGroupBox *dettagliFumetto;
-    //QGroupBox *dettagliRivista;
-    QGroupBox *dettagliMensile;
-    QGroupBox *dettagliSettimanale;
+    QGroupBox *dettagliRivista;
+    QGroupBox *boxTipoSelezionato;
 
 public:
     explicit FinestraDiInserimento(QWidget *parent = nullptr);
@@ -41,8 +40,7 @@ public slots:
 
     void showLibro();
     void showFumetto();
-    void showSettimanale();
-    void showMensile();
+    void showRivista();
 
     virtual void conferma();
     void annulla();
@@ -51,8 +49,7 @@ signals:
 
     void attivaLibro();
     void attivaFumetto();
-    void attivaSettimanale();
-    void attivaMensile();
+    void attivaRivista();
 
     void mandaDettagliOggetto(const QStringList);
     void erroreInput();

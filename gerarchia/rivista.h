@@ -10,8 +10,10 @@ class Rivista : public Item
 private:
     int numeroUscita;
     string editore;
+    bool settimanale;
+    bool mensile;
 public:
-    Rivista(string t, string g, double p, double pn, int u, string e);
+    Rivista(string t, string g, double p, double pn, int u, string e, bool s, bool m);
     Rivista(const Rivista&);
     Rivista* clone() const = 0;
 
@@ -19,8 +21,11 @@ public:
     bool operator!=(const Item&) const;
 
 
-    virtual string getEditore() const;
-    virtual int getNumeroUscita() const;
+    string getEditore() const;
+    int getNumeroUscita() const;
+
+    bool getSettimanale() const;
+    bool getMensile() const;
 
     QString getType() const = 0;
     string print() const;
