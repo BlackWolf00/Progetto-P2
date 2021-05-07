@@ -202,17 +202,25 @@ void FinestraDiInserimento::resetPerNuovoInserimento() {
     numeroUscitaF->setText("0");
     numeroUscitaR->setText("0");
 
+    libro->setAutoExclusive(false);
     libro->setChecked(false);
+    libro->setAutoExclusive(true);
 
+    fumetto->setAutoExclusive(false);
     fumetto->setChecked(false);
+    fumetto->setAutoExclusive(true);
 
+    rivista->setAutoExclusive(false);
     rivista->setChecked(false);
+    rivista->setAutoExclusive(true);
 
-    settimanale->setAutoExclusive(true);
+    settimanale->setAutoExclusive(false);
     settimanale->setChecked(false);
+    settimanale->setAutoExclusive(true);
 
-    mensile->setAutoExclusive(true);
+    mensile->setAutoExclusive(false);
     mensile->setChecked(false);
+    mensile->setAutoExclusive(true);
 
     dettagliBase->setVisible(true);
     boxElementoSelezionato->setVisible(true);
