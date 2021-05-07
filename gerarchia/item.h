@@ -31,8 +31,6 @@ public:
 
     static bool match(string, string);
 
-    virtual string getEditore() const = 0;
-
     virtual QString getType() const = 0;
     virtual string print() const;
     virtual void serializzaDati(QXmlStreamWriter&) const = 0;

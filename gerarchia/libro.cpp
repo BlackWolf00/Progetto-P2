@@ -1,10 +1,10 @@
 #include "libro.h"
 
-Libro::Libro(string t, string g, double p, double pn, string a, string e, string c)
+Libro::Libro(string t, string g, double p, double pn, string a, int e, string c)
     : Item(t, g, p, pn), autore(a), annoEdizione(e), editore(c) {}
 
 Libro::Libro(const Libro& l) : Item(l), autore(l.getAutore()), annoEdizione(l.getAnnoEdizione()),
-    editore(l.getEditore()) {} //FORSE DA CORREGGERE con l.autore ed ecc...
+    editore(l.getEditore()) {}
 
 Libro *Libro::clone() const {
     return new Libro(*this);
@@ -24,7 +24,7 @@ string Libro::getAutore() const {
     return autore;
 }
 
-string Libro::getAnnoEdizione() const {
+int Libro::getAnnoEdizione() const {
     return annoEdizione;
 }
 
@@ -37,13 +37,14 @@ QString Libro::getType() const {
 }
 
 string Libro::print() const {
-    return Item::print() + "\n" + "Tipologia: Libro" + "\n" + "Autore: " + autore + "\n" + "Anno Edizione: " + annoEdizione + "\n" + "Editore: " + editore + "\n";
+    return Item::print() + "\n" + "Tipologia: Libro" + "\n" + "Autore: " + autore + "\n" + "Anno Edizione: " + std::to_string(annoEdizione) + "\n" + "Editore: " + editore + "\n";
 }
 
 Libro *Libro::unserialize(QXmlStreamReader &rd) {
     QString t = "--Empty--", g = "--Empty--", a = "--Empty--",
-            e = "--Empty--", c = "--Empty--";
+            c = "--Empty--";
     double p = 0, pn = 0;
+    int e = 0;
 
     if (rd.readNextStartElement() && rd.name() == "titolo")
         t = rd.readElementText();
@@ -61,14 +62,14 @@ Libro *Libro::unserialize(QXmlStreamReader &rd) {
         a = rd.readElementText();
 
     if (rd.readNextStartElement() && rd.name() == "annoEdizione")
-        e = rd.readElementText();
+        e = rd.readElementText().toInt();
 
     if (rd.readNextStartElement() && rd.name() == "editore")
         c = rd.readElementText();
 
     rd.skipCurrentElement();
     return new Libro(t.toStdString(), g.toStdString(), p, pn, a.toStdString(),
-                     e.toStdString(), c.toStdString());
+                     e, c.toStdString());
 }
 
 void Libro::serializzaDati(QXmlStreamWriter &wr) const {
@@ -96,7 +97,7 @@ void Libro::serializzaDati(QXmlStreamWriter &wr) const {
     wr.writeEndElement();
 
     wr.writeStartElement("annoEdizione");
-    wr.writeCharacters(QString::fromStdString(getAnnoEdizione()));
+    wr.writeCharacters(QString::number(getAnnoEdizione()));
     wr.writeEndElement();
 
     wr.writeStartElement("editore");

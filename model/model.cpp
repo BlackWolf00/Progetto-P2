@@ -20,7 +20,7 @@ bool Model::modificaOggetto(const unsigned int i, const QStringList l) {
         DeepPtr<Item> elemento;
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
                                    l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
@@ -76,7 +76,7 @@ QStringList Model::getElementiCatalogo(const unsigned int i) const {
         stampa.push_back(QString::number(item->getPrezzo()));
         stampa.push_back(QString::number(item->getPrezzoNoleggio()));
         stampa.push_back(QString::fromStdString(dynamic_cast<const Libro*>(&(*(catalogo.searchAtIndex(i))))->getAutore()));
-        stampa.push_back(QString::fromStdString(dynamic_cast<const Libro*>(&(*(catalogo.searchAtIndex(i))))->getAnnoEdizione()));
+        stampa.push_back(QString::number(item->getAnnoEdizione()));
         stampa.push_back(QString::fromStdString(dynamic_cast<const Libro*>(&(*(catalogo.searchAtIndex(i))))->getEditore()));
     }
     else {
@@ -135,7 +135,7 @@ QStringList Model::getElementiAcquisto(const unsigned int i) const {
         stampa.push_back(QString::number(item->getPrezzo()));
         stampa.push_back(QString::number(item->getPrezzoNoleggio()));
         stampa.push_back(QString::fromStdString(item->getAutore()));
-        stampa.push_back(QString::fromStdString(item->getAnnoEdizione()));
+        stampa.push_back(QString::number(item->getAnnoEdizione()));
         stampa.push_back(QString::fromStdString(item->getEditore()));
     }
     else {
@@ -195,7 +195,7 @@ QStringList Model::getElementeiNoleggio(const unsigned int i) const {
         stampa.push_back(QString::number(item->getPrezzo()));
         stampa.push_back(QString::number(item->getPrezzoNoleggio()));
         stampa.push_back(QString::fromStdString(item->getAutore()));
-        stampa.push_back(QString::fromStdString(item->getAnnoEdizione()));
+        stampa.push_back(QString::number(item->getAnnoEdizione()));
         stampa.push_back(QString::fromStdString(item->getEditore()));
     }
     else {
@@ -320,7 +320,7 @@ bool Model::controllaNelCatalogo(const QStringList l) const {
     if(l.at(0) != "null") {
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
                                    l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
@@ -339,7 +339,7 @@ unsigned int Model::trovaElementoNelCatalogo(const QStringList l) const {
     if(l.at(0) != "null") {
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
                                    l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
@@ -377,7 +377,7 @@ void Model::aggiungiNelCatalogo(const QStringList l) {
 
         if(l.at(0) == "l")
             elemento = new Libro(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
-                                 l.at(5).toStdString(), l.at(6).toStdString(), l.at(7).toStdString());
+                                 l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());
         if(l.at(0) == "f")
             elemento = new Fumetto(l.at(1).toStdString(), l.at(2).toStdString(), l.at(3).toDouble(), l.at(4).toDouble(),
                                    l.at(5).toStdString(), l.at(6).toInt(), l.at(7).toStdString());

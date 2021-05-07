@@ -8,7 +8,7 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     numeroUscitaF(new QLineEdit("0", this)), numeroUscitaR(new QLineEdit("0", this)),
     editoreL(new QLineEdit("--Vuoto--", this)), editoreF(new QLineEdit("--Vuoto--", this)),
     editoreR(new QLineEdit("--Vuoto--", this)),
-    annoEdizione(new QLineEdit("--Vuoto--", this)),
+    annoEdizione(new QLineEdit("0", this)),
     libro(new QRadioButton("Libro", this)), fumetto(new QRadioButton("Fumetto", this)),
     rivista(new QRadioButton("Rivista", this)),
     mensile(new QCheckBox("Mensile", this)), settimanale(new QCheckBox("Settimanale", this)),
@@ -198,7 +198,7 @@ void FinestraDiInserimento::resetPerNuovoInserimento() {
     editoreL->setText("--Vuoto--");
     editoreF->setText("--Vuoto--");
     editoreR->setText("--Vuoto--");
-    annoEdizione->setText("--Vuoto--");
+    annoEdizione->setText("0");
     numeroUscitaF->setText("0");
     numeroUscitaR->setText("0");
 

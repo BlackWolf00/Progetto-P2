@@ -7,13 +7,12 @@ class Libro : public Item
 {
 private:
     string autore;
-    string annoEdizione;
+    int annoEdizione;
     string editore;
 public:
-    Libro(string t, string g, double p, double pn,string a,  string e, string c);
+    Libro(string t, string g, double p, double pn, string a,  int e, string c);
     Libro(const Libro&);
     Libro* clone() const;
-    string getAnnoEdizione() const;
 
     bool operator ==(const Item&) const;
     bool operator !=(const Item&) const;
@@ -21,6 +20,7 @@ public:
     virtual string getEditore() const;
 
     string getAutore() const;
+    int getAnnoEdizione() const;
     string print() const;
 
     QString getType() const;
