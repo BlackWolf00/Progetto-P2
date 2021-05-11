@@ -161,8 +161,8 @@ void Controller::apriCarica() {
         modello->setFilename(file);
         finestraP->displayCarica(modello->caricaDati());
         refreshCatalogo();
-        refreshNoleggio();
         refreshAcquisto();
+        refreshNoleggio();
     }
 }
 

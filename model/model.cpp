@@ -360,6 +360,7 @@ bool Model::trovatoQualcosa() const {
 void Model::pulisciSpazio() {
     catalogo = Container<DeepPtr<Item>> ();
     acquisto = Carrello();
+    noleggio = Carrello();
 }
 
 void Model::setData(const QDate d) {
