@@ -47,15 +47,15 @@ Controller::Controller(QWidget *parent) : QWidget(parent), modello(new Model(thi
     connect(modello, SIGNAL(noleggioRimosso()), this, SLOT(refreshNoleggio()));
 }
 
-void Controller::scambiaNelCatalogo(const unsigned int i, const QStringList dettagli) {
+/*void Controller::scambiaNelCatalogo(const unsigned int i, const QStringList dettagli) {
     modello->modificaOggetto(indexTranslate[i], dettagli);
-}
+}*/
 
 void Controller::aggiungiACatalogo(const QStringList dettagli) {
     if(dettagli.first() == "null")
         finestraP->displayErroreInput();
     else {
-        if(dettagli[1] == "null")
+        if(dettagli[1] == "" || dettagli[2] == "" || dettagli[3] == "" || dettagli[4] == "" || dettagli[5] == "" || dettagli[6] == "" || dettagli[7] == "")
             finestraP->displayErroreInput();
         else{
             if(!modello->controllaNelCatalogo(dettagli))

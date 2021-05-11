@@ -12,6 +12,7 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
         dettagliLibro->setVisible(true);
         dettagliFumetto->setVisible(false);
         dettagliRivista->setVisible(false);
+        boxTipoSelezionato->setVisible(false);
 
         this->adjustSize();
 
@@ -35,6 +36,7 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
             dettagliLibro->setVisible(false);
             dettagliFumetto->setVisible(true);
             dettagliRivista->setVisible(false);
+            boxTipoSelezionato->setVisible(false);
 
             this->adjustSize();
 
@@ -58,10 +60,12 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                 dettagliLibro->setVisible(false);
                 dettagliFumetto->setVisible(false);
                 dettagliRivista->setVisible(true);
+                boxTipoSelezionato->setVisible(true);
 
                 this->adjustSize();
 
                 rivista->setChecked(true);
+                settimanale->setAutoExclusive(true);
                 settimanale->setChecked(true);
 
                 titolo->setText(l.at(1));
@@ -84,10 +88,12 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                     dettagliLibro->setVisible(false);
                     dettagliFumetto->setVisible(false);
                     dettagliRivista->setVisible(true);
+                    boxTipoSelezionato->setVisible(true);
 
                     this->adjustSize();
 
                     rivista->setChecked(true);
+                    mensile->setAutoExclusive(true);
                     mensile->setChecked(true);
 
                     titolo->setText(l.at(1));
