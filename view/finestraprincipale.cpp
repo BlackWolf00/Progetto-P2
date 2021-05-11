@@ -117,19 +117,19 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
 
     boxAcquisto->addWidget(labelAcquisto);
     boxAcquisto->addWidget(acquisto);
-    boxAcquisto->addWidget(bottoneRimuoviAcquisto); //Forse inserire scrivi quantita ma dovrei cambiare un po la gestione della rimozione
+    boxAcquisto->addWidget(bottoneRimuoviAcquisto);
 
     continuaDettagli->addWidget(dettagli);
 
     sezioneCerca->addWidget(labelCerca);
     sezioneCerca->addWidget(trova);
 
+    continuaElemento->addLayout(sezioneCerca);
     continuaElemento->addWidget(labelCatalogo);
     continuaElemento->addWidget(elemento);
 
     sinistra->addLayout(continuaElemento);
     sinistra->addLayout(quantitaBottoni);
-    sinistra->addLayout(sezioneCerca);
 
     destra->addLayout(continuaDettagli);
     destra->addLayout(dueListe);
