@@ -55,7 +55,8 @@ void Controller::aggiungiACatalogo(const QStringList dettagli) {
     if(dettagli.first() == "null")
         finestraP->displayErroreInput();
     else {
-        if(dettagli[1] == "" || dettagli[2] == "" || dettagli[3] == "" || dettagli[4] == "" || dettagli[5] == "" || dettagli[6] == "" || dettagli[7] == "")
+        if(dettagli[1] == "" || dettagli[2] == "" || dettagli[3] == "" || dettagli[4] == "" || dettagli[5] == "" || dettagli[6] == "" || dettagli[7] == "" ||
+                dettagli[1] == "--Vuoto--" || dettagli[2] == "--Vuoto--" || dettagli[3] == "0.0" || dettagli[4] == "0.0")
             finestraP->displayErroreInput();
         else{
             if(!modello->controllaNelCatalogo(dettagli))

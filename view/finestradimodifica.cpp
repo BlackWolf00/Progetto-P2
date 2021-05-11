@@ -67,6 +67,8 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                 rivista->setChecked(true);
                 settimanale->setAutoExclusive(true);
                 settimanale->setChecked(true);
+                mensile->setAutoExclusive(true);
+                mensile->setChecked(true);
 
                 titolo->setText(l.at(1));
                 genere->setText(l.at(2));
@@ -93,6 +95,8 @@ void FinestraDiModifica::caricaDataPerModifica(const QStringList l, const unsign
                     this->adjustSize();
 
                     rivista->setChecked(true);
+                    settimanale->setAutoExclusive(true);
+                    settimanale->setChecked(true);
                     mensile->setAutoExclusive(true);
                     mensile->setChecked(true);
 
