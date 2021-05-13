@@ -54,5 +54,4 @@ HEADERS += \
         controller/controller.h \
 
 RESOURCES += \
-        Risorse.qrc \
-    Risorse.qrc
+        Risorse.qrc
