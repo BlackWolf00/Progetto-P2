@@ -35,7 +35,6 @@ public:
     void displayDettagli(const QString);
     void displayTotale(const double, const double);
     void displayErroreApertura();
-    //void displayErroreCF();
     void displayElementoEsistente();
     void displayCarica(QString);
     void displaySalva(QString);

@@ -22,7 +22,7 @@ bool XmlIO::leggi(const QString filename, Container<DeepPtr<Item> > &catalogo) {
                 if(type == "m")
                     catalogo.pushInOrder(Mensile::unserialize(reader));
             }
-            catch (string s){
+            catch (string n){
                 return false;
             }
         }
