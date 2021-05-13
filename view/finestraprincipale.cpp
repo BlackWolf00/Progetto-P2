@@ -12,6 +12,8 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     noleggio->setSelectionMode(QAbstractItemView::SingleSelection);
     acquisto->setSelectionMode(QAbstractItemView::SingleSelection);
 
+    data->setDisabled(true);
+
     QWidget *widgetPrincipale = new QWidget(this);
     QVBoxLayout *layoutPrincipale = new QVBoxLayout();
     QMenuBar *menu = new QMenuBar(this);
@@ -224,6 +226,12 @@ void FinestraPrincipale::displayNessunaSelezione() {
 void FinestraPrincipale::displayErroreCF() {
     QMessageBox message;
     message.critical(this, "Errore", "Il Codice Fiscale inserito è sbagliato");
+    message.setFixedSize(500, 200);
+}
+
+void FinestraPrincipale::displayErroreNomeCliente() {
+    QMessageBox message;
+    message.critical(this, "Errore", "Il nome del cliente non è stato inserito");
     message.setFixedSize(500, 200);
 }
 

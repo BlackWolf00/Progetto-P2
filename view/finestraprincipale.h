@@ -36,6 +36,7 @@ public:
     void displayTotale(const double, const double);
     void displayErroreApertura();
     void displayErroreCF();
+    void displayErroreNomeCliente();
     void displayElementoEsistente();
     void displayCarica(QString);
     void displaySalva(QString);

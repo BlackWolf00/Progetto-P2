@@ -168,57 +168,60 @@ void Controller::apriCarica() {
 }
 
 void Controller::apriSalvaPDF() const {
-    if(finestraP->getCFCliente() == "error")
-        finestraP->displayErroreCF();
-    else
-    {
-    QString file = QFileDialog::getSaveFileName(finestraP, "Salva PDF", "../progetto/PDF");
-    if(file == "")
-        file = ("Preventivo_" + modello->getData().toString("dmy") + ".xml");
-    else {
-        if(!file.endsWith(".pdf"))
-            file = file + ".pdf";
-        QStringList r = modello->getNoleggio();
-        QStringList a = modello->getAcquisto();
-        QPdfWriter writer(file);
-        QPainter painter(&writer);
-        painter.setPen(Qt::black);
-
-        painter.drawText(100, 200, "Cliente: " + finestraP->getNomeCliente());
-        painter.drawText(3750, 200, "CF: " + finestraP->getCFCliente());
-        painter.drawText(7750, 200, "Data: " + modello->getData().toString());
-        painter.drawText(1600, 1000, "Noleggi");
-        painter.drawText(6300, 1000, "Acquisti");
-
-        int l = 800, a1 = 1400;
-        auto noleggio_it = r.begin();
-        while(noleggio_it != r.end()) {
-            painter.drawText(l, a1, *noleggio_it);
-            noleggio_it++;
-            a1+=300;
-        }
-
-        l = 5800;
-        int a2 = 1400;
-        auto acquisto_it = a.begin();
-        while (acquisto_it != a.end()) {
-            painter.drawText(l, a2, *acquisto_it);
-            acquisto_it++;
-            a2 += 300;
-        }
-        if(a1 > a2) {
-            painter.drawText(950, a1+500, "Totale noleggio: " + QString::number(modello->getPrezziNoleggio()) + "€");
-            painter.drawText(5950, a1+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
-        }
+    if(finestraP->getNomeCliente() == "" || finestraP->getNomeCliente() == "Cliente")
+        finestraP->displayErroreNomeCliente();
         else {
-            painter.drawText(950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziNoleggio()) + "€");
-            painter.drawText(5950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
-        }
+            if(finestraP->getCFCliente() == "error")
+                finestraP->displayErroreCF();
+            else {
+                QString file = QFileDialog::getSaveFileName(finestraP, "Salva PDF", "../progetto/PDF");
+                if(file == "")
+                    file = ("Preventivo_" + modello->getData().toString("dmy") + ".xml");
+                else {
+                    if(!file.endsWith(".pdf"))
+                        file = file + ".pdf";
+                    QStringList r = modello->getNoleggio();
+                    QStringList a = modello->getAcquisto();
+                    QPdfWriter writer(file);
+                    QPainter painter(&writer);
+                    painter.setPen(Qt::black);
 
-        painter.drawText(200, 13700, "Preventivo BiblioTech");
-        painter.end();
-    }
-    }
+                    painter.drawText(100, 200, "Cliente: " + finestraP->getNomeCliente());
+                    painter.drawText(3750, 200, "CF: " + finestraP->getCFCliente());
+                    painter.drawText(7750, 200, "Data: " + modello->getData().toString());
+                    painter.drawText(1600, 1000, "Noleggi");
+                    painter.drawText(6300, 1000, "Acquisti");
+
+                    int l = 800, a1 = 1400;
+                    auto noleggio_it = r.begin();
+                    while(noleggio_it != r.end()) {
+                        painter.drawText(l, a1, *noleggio_it);
+                        noleggio_it++;
+                        a1+=300;
+                    }
+
+                    l = 5800;
+                    int a2 = 1400;
+                    auto acquisto_it = a.begin();
+                    while (acquisto_it != a.end()) {
+                        painter.drawText(l, a2, *acquisto_it);
+                        acquisto_it++;
+                        a2 += 300;
+                    }
+                    if(a1 > a2) {
+                        painter.drawText(950, a1+500, "Totale noleggio: " + QString::number(modello->getPrezziNoleggio()) + "€");
+                        painter.drawText(5950, a1+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
+                    }
+                    else {
+                        painter.drawText(950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziNoleggio()) + "€");
+                        painter.drawText(5950, a2+500, "Totale comprato: " + QString::number(modello->getPrezziAcquisto()) + "€");
+                    }
+
+                    painter.drawText(200, 13700, "Preventivo BiblioTech");
+                    painter.end();
+                    }
+                }
+            }
 }
 
 void Controller::erroreInput() {
