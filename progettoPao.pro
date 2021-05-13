@@ -52,3 +52,7 @@ HEADERS += \
         util/listasmart.h \
         view/finestradiinserimento.h \
         controller/controller.h \
+
+RESOURCES += \
+        Risorse.qrc \
+    Risorse.qrc
