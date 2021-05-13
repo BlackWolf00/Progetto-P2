@@ -12,7 +12,7 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     noleggio->setSelectionMode(QAbstractItemView::SingleSelection);
     acquisto->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    data->setDisabled(true);
+    data->setReadOnly(true);
 
     QWidget *widgetPrincipale = new QWidget(this);
     QVBoxLayout *layoutPrincipale = new QVBoxLayout();
