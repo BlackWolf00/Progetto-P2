@@ -221,6 +221,12 @@ void FinestraPrincipale::displayNessunaSelezione() {
     message.setFixedSize(500, 200);
 }
 
+void FinestraPrincipale::displayErroreCF() {
+    QMessageBox message;
+    message.critical(this, "Errore", "Il Codice Fiscale inserito è sbagliato");
+    message.setFixedSize(500, 200);
+}
+
 void FinestraPrincipale::displayDettagli(const QString d) {
     dettagli->clear();
     dettagli->setText(d);
@@ -275,7 +281,10 @@ QString FinestraPrincipale::getNomeCliente() const {
 }
 
 QString FinestraPrincipale::getCFCliente() const {
-    return cf->text();
+    if(cf->text().length() != 16)
+        return "error";
+    else
+        return cf->text();
 }
 
 void FinestraPrincipale::aggiornaDettagli(QString info) {

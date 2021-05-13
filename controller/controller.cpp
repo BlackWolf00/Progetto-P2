@@ -168,6 +168,10 @@ void Controller::apriCarica() {
 }
 
 void Controller::apriSalvaPDF() const {
+    if(finestraP->getCFCliente() == "error")
+        finestraP->displayErroreCF();
+    else
+    {
     QString file = QFileDialog::getSaveFileName(finestraP, "Salva PDF", "../progetto/PDF");
     if(file == "")
         file = ("Preventivo_" + modello->getData().toString("dmy") + ".xml");
@@ -213,6 +217,7 @@ void Controller::apriSalvaPDF() const {
 
         painter.drawText(200, 13700, "Preventivo BiblioTech");
         painter.end();
+    }
     }
 }
 
