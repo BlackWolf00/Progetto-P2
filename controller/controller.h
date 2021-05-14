@@ -24,8 +24,6 @@ private:
 public:
     explicit Controller(QWidget *parent = nullptr);
 
-    /*void scambiaNelCatalogo(const unsigned int, const QStringList);*/
-
 public slots:
 
     void aggiungiACatalogo(const QStringList);

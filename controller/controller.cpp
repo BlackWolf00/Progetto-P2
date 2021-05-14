@@ -75,7 +75,7 @@ void Controller::aggiungiAdAcquisto(const unsigned int i, const unsigned int q) 
 
 void Controller::aggiungiANoleggio(const unsigned int i, const unsigned int q) {
     if(q != 0)
-        modello->aggiungiNolleggio(indexTranslate[i], q);
+        modello->aggiungiNoleggio(indexTranslate[i], q);
 }
 
 void Controller::removeCatalogo(const unsigned int i) {

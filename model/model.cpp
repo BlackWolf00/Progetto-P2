@@ -9,7 +9,7 @@ void Model::aggiungiAcquisto(const unsigned int i, const unsigned int q) {
     emit acquistoAggiunto();
 }
 
-void Model::aggiungiNolleggio(const unsigned int i, const unsigned int q) {
+void Model::aggiungiNoleggio(const unsigned int i, const unsigned int q) {
     DeepPtr<Item> inserisci(catalogo.searchAtIndex(i));
     noleggio.inserisciNelCarrello(inserisci, q);
     emit noleggioAggiuto();

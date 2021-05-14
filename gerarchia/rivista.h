@@ -20,15 +20,14 @@ public:
     bool operator==(const Item&) const;
     bool operator!=(const Item&) const;
 
-
-    string getEditore() const;
     int getNumeroUscita() const;
 
     bool getSettimanale() const;
     bool getMensile() const;
 
-    QString getType() const = 0;
-    string print() const;
+    string getEditore() const;
+    virtual QString getType() const = 0;
+    virtual string print() const;
     virtual void serializzaDati(QXmlStreamWriter&) const = 0;
 
 };

@@ -17,13 +17,11 @@ public:
     bool operator ==(const Item&) const;
     bool operator !=(const Item&) const;
 
-
-    virtual string getEditore() const;
-
     string getAutore() const;
     int getNumeroUscita() const;
     string print() const;
 
+    string getEditore() const;
     QString getType() const;
     static Fumetto *unserialize(QXmlStreamReader&);
     void serializzaDati(QXmlStreamWriter&) const;

@@ -35,8 +35,6 @@ public:
     Container(const Container&);
     ~Container();
 
-    //funzioni di inserimento, rimozione e ricerca
-
     void pushInOrder(const T&);
     bool removeOneItem(const T&);
     bool removeOneAtIndex(const unsigned int);
@@ -44,21 +42,15 @@ public:
     T searchAtIndex(unsigned int) const;
     unsigned int getIndex(const T&) const;
 
-    //operatori container
-
     Container<T> operator=(const Container<T>&);
     bool operator==(const Container<T>&) const;
     bool operator!=(const Container<T>&) const;
-
-    //funzioni di supporto
 
     void replaceAtIndex(const T&, unsigned int);
     nodo* getFirst() const;
     bool is_empty() const;
     unsigned int size() const;
     int itemsCounter(const T&) const;
-
-    //Iteratore
 
     class Iterator{
         friend class Container<T>;
@@ -76,8 +68,6 @@ public:
         bool hasNext() const;
     };
 
-    //Iteratore costante
-
     class Const_Iterator{
         friend class Container<T>;
     private:
@@ -94,18 +84,13 @@ public:
         bool constHasNext() const;
     };
 
-    //Metodi Iteratore
-
     Iterator begin() const;
     Iterator end() const;
-
-    //Metodi Iteratore costante
 
     Const_Iterator constBegin() const;
     Const_Iterator constEnd() const;
 };
 
-// NODO
 template <class T>
 Container<T>::nodo::nodo(const T& i, nodo* p): info(i), next(p){}
 
@@ -118,8 +103,6 @@ Container<T>::nodo::~nodo(){
         delete next;
     }
 }
-
-//METODI STATICI
 
 template <class T>
 typename Container<T>::nodo* Container<T>::copy(const nodo* n){
@@ -153,26 +136,20 @@ bool Container<T>::isEqual(const nodo* nodol, const nodo* nodolfor){
     return false;
 }
 
-// CONTAINER
-
-//funzioni base
-
 template <class T>
 Container<T>::Container(): first(nullptr){}
 
 template <class T>
-Container<T>::Container(const T& itm): first(new nodo(itm)){} //costruttore ad un parametro
+Container<T>::Container(const T& itm): first(new nodo(itm)){}
 
 template <class T>
-Container<T>::Container(const Container& l1): first(copy(l1.first)){}    //costruttore di copia
+Container<T>::Container(const Container& l1): first(copy(l1.first)){}
 
 template <class T>
 Container<T>::~Container<T>(){
     if(first)
         destroy(first);
 }
-
-//funzioni di modifica del contenitore
 
 template <class T>
 void Container<T>::pushInOrder(const T& itm){
@@ -198,15 +175,14 @@ template <class T>
 bool Container<T>::removeOneItem(const T& itm){
     if(is_empty())
         return false;
-//non vuota
-    if(!first->next){//un elemento
+    if(!first->next){
         if(first->info==itm){
             delete first;
             first=nullptr;
             return true;
         }
     }
-    else{//piu di un el.
+    else{
         nodo* prev=first;
         nodo* att=first->next;
 
@@ -238,18 +214,18 @@ bool Container<T>::removeOneAtIndex(const unsigned int i){
     if(is_empty())
         return false;
 
-    if(!first->next){//coda
-        if(i==0){//testa
+    if(!first->next){
+        if(i==0){
             delete first;
             first=nullptr;
             return true;
         }
     }
-    else{//piu di un el
+    else{
         nodo* prev=first;
         nodo* att=first->next;
 
-        if(i==0){//testa
+        if(i==0){
             first=first->next;
             prev->next=nullptr;
             delete prev;
@@ -298,8 +274,6 @@ unsigned int Container<T>::getIndex(const T& itm)const{
     return counter;
 }
 
-//operatori container
-
 template <class T>
 Container<T> Container<T>::operator=(const Container<T>& cl){
     if(this!=&cl){
@@ -318,8 +292,6 @@ template <class T>
 bool Container<T>::operator!=(const Container<T>& c) const{
     return !(equal(first, c.first));
 }
-
-//funzioni di utilità
 
 template<class T>
 void Container<T>::replaceAtIndex(const T& itm, unsigned int i){
@@ -357,8 +329,6 @@ int Container<T>::itemsCounter(const T& i) const{
     return counter;
 }
 
-//Funzioni Iteratore
-
 template<class T>
 Container<T>::Iterator::Iterator(Container::nodo *n, bool passed): pointed(n), pte(passed){}
 
@@ -368,7 +338,7 @@ Container<T>::Iterator::Iterator(const Container<T>::Iterator& it): pointed(it.p
         pte=true;
     else
         pte=false;
-}        //prestare attenzione al pst the end
+}
 
 template<class T>
 typename Container<T>::Iterator Container<T>::begin() const{
@@ -424,8 +394,6 @@ bool Container<T>::Iterator::hasNext() const{
         return false;
 }
 
-//Funzioni Iteratore Costante
-
 template<class T>
 Container<T>::Const_Iterator::Const_Iterator(Container::nodo *n, bool passed): pointed(n), pte(passed){}
 
@@ -435,7 +403,7 @@ Container<T>::Const_Iterator::Const_Iterator(const Container<T>::Const_Iterator&
         pte=true;
     else
         pte=false;
-}        //prestare attenzione al pst the end
+}
 
 template<class T>
 typename Container<T>::Const_Iterator Container<T>::constBegin() const{

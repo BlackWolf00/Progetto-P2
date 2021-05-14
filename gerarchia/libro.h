@@ -17,12 +17,11 @@ public:
     bool operator ==(const Item&) const;
     bool operator !=(const Item&) const;
 
-    virtual string getEditore() const;
-
     string getAutore() const;
     int getAnnoEdizione() const;
     string print() const;
 
+    string getEditore() const;
     QString getType() const;
     static Libro *unserialize(QXmlStreamReader&);
     void serializzaDati(QXmlStreamWriter&) const;
