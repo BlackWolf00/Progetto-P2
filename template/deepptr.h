@@ -6,7 +6,7 @@
 template <class T>
 class DeepPtr{
 private:
-    T* pted;     //T puntato
+    T* pted;
 public:
     DeepPtr(T* =nullptr);
     DeepPtr(const DeepPtr&);

@@ -47,10 +47,6 @@ Controller::Controller(QWidget *parent) : QWidget(parent), modello(new Model(thi
     connect(modello, SIGNAL(noleggioRimosso()), this, SLOT(refreshNoleggio()));
 }
 
-/*void Controller::scambiaNelCatalogo(const unsigned int i, const QStringList dettagli) {
-    modello->modificaOggetto(indexTranslate[i], dettagli);
-}*/
-
 void Controller::aggiungiACatalogo(const QStringList dettagli) {
     if(dettagli.first() == "null")
         finestraP->displayErroreInput();

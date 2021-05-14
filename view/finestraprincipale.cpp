@@ -37,14 +37,10 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     QLabel *labelTotNoleggio = new QLabel("Totale Noleggio: ");
     QLabel *labelTotAcquisto = new QLabel("Totale Acquisto: ");
 
-    //BOTTONI
-
     QPushButton *bottoneNoleggio = new QPushButton("Noleggia");
     QPushButton *bottoneAcquisto = new QPushButton("Acquista");
     QPushButton *bottoneRimuoviNoleggio = new QPushButton("Rimuovi noleggio");
     QPushButton *bottoneRimuoviAcquisto = new QPushButton("Rimuovi acquisto");
-
-    //DEFINIZIONE LAYOUT
 
     QVBoxLayout *boxContinua = new QVBoxLayout();
     QVBoxLayout *boxLabelParziali = new QVBoxLayout();
@@ -52,7 +48,7 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     QHBoxLayout *boxParziali = new QHBoxLayout();
     QHBoxLayout *boxFinale = new QHBoxLayout();
 
-    QVBoxLayout *quantitaBottoni = new QVBoxLayout(); //CAMBIARE NOME
+    QVBoxLayout *quantitaBottoni = new QVBoxLayout();
     QHBoxLayout *scriviQuantita = new QHBoxLayout();
     QHBoxLayout *dueBottoni = new QHBoxLayout();
 
@@ -72,8 +68,6 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
     QVBoxLayout *layoutFinale = new QVBoxLayout();
 
     QHBoxLayout *dettagliCliente = new QHBoxLayout();
-
-    //AGGIUNTA LAYOUT
 
     file->addAction(carica);
     file->addAction(salva);
@@ -156,8 +150,6 @@ FinestraPrincipale::FinestraPrincipale(QWidget *parent)
 
     dettagli->setMinimumHeight(300);
     dettagli->setMinimumWidth(300);
-
-    //CONNESSIONI
 
     connect(carica, SIGNAL(triggered()), SIGNAL(apriFinestraCaricamento()));
     connect(salva, SIGNAL(triggered()), SIGNAL(apriFinestraSalvataggio()));

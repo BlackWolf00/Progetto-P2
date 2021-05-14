@@ -114,8 +114,6 @@ FinestraDiInserimento::FinestraDiInserimento(QWidget *parent) :
     layoutNumeroUscitaR->addWidget(labelNumeroUscitaR);
     layoutNumeroUscitaR->addWidget(numeroUscitaR);
 
-    //ATTACCO label piccoli a layouit selezione //DA RIMUOVERE
-
     layoutItemBase->addLayout(layoutTitolo);
     layoutItemBase->addLayout(layoutGenere);
     layoutItemBase->addLayout(layoutPrezzo);

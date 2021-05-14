@@ -50,7 +50,6 @@ public:
     nodo* getFirst() const;
     bool is_empty() const;
     unsigned int size() const;
-    int itemsCounter(const T&) const;
 
     class Iterator{
         friend class Container<T>;
@@ -317,15 +316,6 @@ unsigned int Container<T>::size() const{
         counter++;
         tmp=tmp->next;
     }
-    return counter;
-}
-
-template <class T>
-int Container<T>::itemsCounter(const T& i) const{
-    int counter=0;
-    for(Container<T>::Const_Iterator cit=constBegin(); cit != constEnd(); cit++)
-        if((*cit)==i)
-            counter++;
     return counter;
 }
 
