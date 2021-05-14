@@ -59,7 +59,7 @@ DeepPtr<T>::~DeepPtr(){
 
 template <class T>
 bool DeepPtr<T>::operator==(const DeepPtr& dptr) const{
-    return *pted==*(dptr.pted);
+    return pted==(dptr.pted);
 }
 
 template <class T>
