@@ -37,7 +37,6 @@ public:
     void displayErroreApertura();
     void displayErroreCF();
     void displayErroreNomeCliente();
-    void displayElementoEsistente();
     void displayCarica(QString);
     void displaySalva(QString);
 

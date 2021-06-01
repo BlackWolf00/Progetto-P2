@@ -246,12 +246,6 @@ void FinestraPrincipale::displayErroreApertura() {
     message.setFixedSize(500, 200);
 }
 
-void FinestraPrincipale::displayElementoEsistente() {
-    QMessageBox message;
-    message.critical(this, "Errore", "Elemento già esistente");
-    message.setFixedSize(500, 200);
-}
-
 void FinestraPrincipale::displayCarica(QString e) {
     QMessageBox message;
     message.warning(this, "Conferma", e);

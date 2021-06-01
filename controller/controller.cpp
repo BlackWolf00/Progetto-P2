@@ -57,9 +57,6 @@ void Controller::aggiungiACatalogo(const QStringList dettagli) {
         else{
             if(!modello->controllaNelCatalogo(dettagli))
                 modello->aggiungiNelCatalogo(dettagli);
-            else {
-                finestraP->displayElementoEsistente();
-            }
         }
     }
 }
