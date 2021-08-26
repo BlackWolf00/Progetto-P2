@@ -38,23 +38,6 @@ bool Item::operator>(const Item& i) const {
     return false;
 }
 
-bool Item::match(string a, string b) {
-    if(a.length() != b.length())
-        return false;
-    else {
-        bool check = true;
-        auto it1 = a.begin();
-        auto it2 = b.begin();
-        while(check && it1 != a.end() && it2 != b.end()) {
-            if(std::tolower(*it1) != std::tolower(*it2))
-                check = false;
-            it1++;
-            it2++;
-        }
-        return check;
-    }
-}
-
 string Item::getTitolo() const {
     return titolo;
 }
