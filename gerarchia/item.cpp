@@ -7,7 +7,7 @@ Item::Item(const Item& i)
     : titolo(i.titolo), genere(i.genere), prezzo(i.prezzo), prezzoNoleggio(i.prezzoNoleggio) {}
 
 bool Item::operator==(const Item& i) const {
-    return match(titolo, i.getTitolo()) && match(genere, i.getGenere());
+    return titolo == i.getTitolo() && genere == i.getGenere();
 }
 
 bool Item::operator!=(const Item& i) const {
