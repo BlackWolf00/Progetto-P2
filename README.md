@@ -2,7 +2,7 @@
 
 Si tratta di un semplice software che crea preventivi.
 Le funzionalità offerte possono essere trovate nella relazione.
-Il progetto ha dovuto rispettare dei requisiti specifici che si possono trovare nel file "SpecificaProgetto"
+Il progetto ha dovuto rispettare dei requisiti specifici che si possono trovare nel file "SpecificaProgetto". <br>
 Il voto finale del progetto è di 26
 
 # FeedBack del Professore sul Progetto
